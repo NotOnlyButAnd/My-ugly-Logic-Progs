@@ -1,0 +1,23 @@
+man(voeneg).
+man(ratibor).
+man(boguslav).
+man(velerad).
+man(duhovlad).
+man(svyatoslav).
+man(dobrozhir).
+man(bogomil).
+man(zlatomir).
+
+woman(goluba).
+woman(lubomila).
+woman(bratislava).
+woman(veslava).
+woman(zhdana).
+woman(bozhedara).
+woman(broneslava).
+woman(veselina).
+woman(zdislava).
+
+men():- man(X), write(X),nl,fail.
+
+women():- woman(X), write(X),nl,fail.
