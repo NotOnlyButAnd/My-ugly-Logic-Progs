@@ -70,3 +70,7 @@ brothers(X):-brother(Y,X),write(Y),nl,fail.
 wife(X,Y):- parent(Y,Z), !, mother(X,Z).
 
 wife(X):- man(X), parent(X,Z), !, mother(Z).
+
+b_s(X,Y):-mother(Z,X), mother(Z,Y), X\=Y.
+
+b_s(X):- b_s(Y,X), write(Y), nl, fail.
