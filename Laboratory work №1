@@ -89,7 +89,7 @@ b_s(X,Y):-mother(Z,X), mother(Z,Y), X\=Y.
 
 b_s(X):- b_s(Y,X), write(Y), nl, fail.
 
-grand_pa(X,Y):- parent(Z,Y), parent(X,Z), man(X), !.
+grand_pa(X,Y):- parent(Z,Y), parent(X,Z), man(X).
 
 grand_pas(X):- parent(Y,X), parent(Z,Y), man(Z), write(Z), nl, fail.
 
@@ -97,3 +97,5 @@ grand_pas(X):- parent(Y,X), parent(Z,Y), man(Z), write(Z), nl, fail.
 grand_da(X,Y):- parent(Z, X), parent(Y,Z), woman(X).
 
 grand_das(X):- grand_da(Z,X), write(Z), nl, fail.
+
+grand_pa_and_son(X,Y):- (grand_pa(X,Y), man(Y));(grand_pa(Y,X), man(X)).
