@@ -7,6 +7,8 @@ man(svyatoslav).
 man(dobrozhir).
 man(bogomil).
 man(zlatomir).
+man(aglay).
+man(vlasiy).
 
 woman(goluba).
 woman(lubomila).
@@ -17,6 +19,8 @@ woman(bozhedara).
 woman(broneslava).
 woman(veselina).
 woman(zdislava).
+woman(auda).
+woman(kvasena).
 
 parent(voeneg,ratibor).
 parent(voeneg,bratislava).
@@ -48,6 +52,14 @@ parent(duhovlad,zlatomir).
 parent(zhdana,zdislava).
 parent(zhdana,zlatomir).
 
+parent(auda,lubomila).
+parent(auda,boguslav).
+parent(aglay,lubomila).
+parent(aglay,boguslav).
+
+parent(vlasiy,veslava).
+parent(kvasena,veslava).
+
 men():- man(X), write(X),nl,fail.
 
 women():- woman(X), write(X),nl,fail.
@@ -74,3 +86,7 @@ wife(X):- man(X), parent(X,Z), !, mother(Z).
 b_s(X,Y):-mother(Z,X), mother(Z,Y), X\=Y.
 
 b_s(X):- b_s(Y,X), write(Y), nl, fail.
+
+grand_pa(X,Y):- parent(Z,Y), parent(X,Z), man(X), !.
+
+grand_pas(X):- parent(Y,X), parent(Z,Y), man(Z), write(Z), nl, fail.
