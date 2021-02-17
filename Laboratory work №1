@@ -99,3 +99,8 @@ grand_da(X,Y):- parent(Z, X), parent(Y,Z), woman(X).
 grand_das(X):- grand_da(Z,X), write(Z), nl, fail.
 
 grand_pa_and_son(X,Y):- (grand_pa(X,Y), man(Y));(grand_pa(Y,X), man(X)).
+
+%построим вспомагательный предикат проверки бабушки
+grand_ma(X,Y):- parent(Z,Y), parent(X,Z), woman(X).
+
+grand_ma_and_son(X,Y):- (grand_ma(X,Y), man(Y));(grand_ma(Y,X), man(X)).
