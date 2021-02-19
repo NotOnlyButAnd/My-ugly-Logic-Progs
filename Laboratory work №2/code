@@ -1,1 +1,26 @@
 % самый первый код акинатора
+
+% Является ли данный объект фильмом (не сериал)? 1 - да, 0 - нет.
+film(interstellar, 1).
+film(rick_and_morty, 0).
+film(the_green_mile, 1).
+film(green_book, 1).
+film(gravity_falls, 0).
+
+film(winx_club, 0).
+film(chappie, 1).
+film(i_robot, 1).
+film(harry_potter, 1).
+film(lord_of_rings, 1).
+
+film(simpsons, 0).
+film(south_park, 0).
+film(big_bang_theory, 0).
+film(riverdale, 0).
+film(teen_wolf, 0).
+
+film(fiksiki, 0).
+film(brilliant_hand, 1).
+film(three_bogatyrs, 1).
+film(chernobyl, 0).
+film(fathers_daughters, 0).
