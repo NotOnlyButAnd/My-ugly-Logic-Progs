@@ -109,3 +109,9 @@ grand_ma_and_son(X,Y):- (grand_ma(X,Y), man(Y));(grand_ma(Y,X), man(X)).
 uncle(X,Y):- parent(Z,Y), brother(X,Z).
 
 uncles(X):- uncle(Z,X), write(Z), nl, fail.
+
+% находим родителя X, кладем в Z. Проверяем, является ли Y братом или
+% сестрой Z.
+nephew(X,Y):- parent(Z,X), b_s(Z,Y), man(X).
+
+nephews(X):- nephew(Z,X), write(Z), nl, fail.
