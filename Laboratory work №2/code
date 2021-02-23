@@ -1,6 +1,7 @@
 % самый первый код акинатора
 
-% Является ли данный объект фильмом (не сериал)? 1 - да, 0 - нет.
+% ////////////////////////////////////////////////////////////////////////////////
+% 1) Является ли данный объект фильмом (не сериал)? 1 - да, 0 - нет.
 film(interstellar, 1).
 film(rick_and_morty, 0).
 film(the_green_mile, 1).
@@ -24,3 +25,264 @@ film(brilliant_hand, 1).
 film(three_bogatyrs, 1).
 film(chernobyl, 0).
 film(fathers_daughters, 0).
+
+film(ivan_and_wolf, 1).
+film(policeman_from_rublevka, 0).
+film(kadetstvo, 0).
+film(elki, 1).
+film(smeshariki, 0).
+
+film(barboskiny, 0).
+film(brat, 1).
+film(shawshank_redemption, 1). % "Побег из Шоушенка"
+film(inception, 1). % "Начало"
+film(departed, 1). % "Отступники"
+
+% неизвестные дополнения к 1 вопросу
+% film(back_to_future, 1).
+% film(titanic, 1).
+% film(closed_school, 0).
+% film(friends, 0).
+% film(luntic, 0).
+
+% film(queens_gambit, 0).
+% film(boy_in_stripped_pijama, 1).
+% film(operation_y, 1).
+% film(star_wars, 1).
+% film(masha_and_bear, 0).
+
+
+% ////////////////////////////////////////////////////////////////////////////////
+% 2) Является ли данный объект продуктом отечественного производства или
+% нет? 1 - да, 0 - нет.
+our_film(interstellar, 0).
+our_film(rick_and_morty, 0).
+our_film(the_green_mile, 0).
+our_film(green_book, 0).
+our_film(gravity_falls, 0).
+
+our_film(winx_club, 0).
+our_film(chappie, 0).
+our_film(i_robot, 0).
+our_film(harry_potter, 0).
+our_film(lord_of_rings, 0).
+
+our_film(simpsons, 0).
+our_film(south_park, 0).
+our_film(big_bang_theory, 0).
+our_film(riverdale, 0).
+our_film(teen_wolf, 0).
+
+our_film(fiksiki, 1).
+our_film(brilliant_hand, 1).
+our_film(three_bogatyrs, 1).
+our_film(chernobyl, 1).
+our_film(fathers_daughters, 1).
+
+our_film(ivan_and_wolf, 1).
+our_film(policeman_from_rublevka, 1).
+our_film(kadetstvo, 1).
+our_film(elki, 1).
+our_film(smeshariki, 1).
+
+our_film(barboskiny, 1).
+our_film(brat, 1).
+our_film(shawshank_redemption, 0). % "Побег из Шоушенка"
+our_film(inception, 0). % "Начало"
+our_film(departed, 0). % "Отступники"
+
+% неизвестные дополнения к 2 вопросу
+% our_film(back_to_future, 0).
+% our_film(titanic, 0).
+% our_film(closed_school, 1).
+% our_film(friends, 0).
+% our_film(luntic, 1).
+
+% our_film(queens_gambit, 0).
+% our_film(boy_in_stripped_pijama, 0).
+% our_film(operation_y, 1).
+% our_film(star_wars, 0).
+% our_film(masha_and_bear, 1).
+
+
+% ////////////////////////////////////////////////////////////////////////////////
+% 3) Является ли данный объект мультипликацией или нет? 1 - да, 0 - нет.
+cartoon(interstellar, 0).
+cartoon(rick_and_morty, 1).
+cartoon(the_green_mile, 0).
+cartoon(green_book, 0).
+cartoon(gravity_falls, 1).
+
+cartoon(winx_club, 1).
+cartoon(chappie, 0).
+cartoon(i_robot, 0).
+cartoon(harry_potter, 0).
+cartoon(lord_of_rings, 0).
+
+cartoon(simpsons, 1).
+cartoon(south_park, 1).
+cartoon(big_bang_theory, 0).
+cartoon(riverdale, 0).
+cartoon(teen_wolf, 0).
+
+cartoon(fiksiki, 1).
+cartoon(brilliant_hand, 0).
+cartoon(three_bogatyrs, 1).
+cartoon(chernobyl, 0).
+cartoon(fathers_daughters, 0).
+
+cartoon(ivan_and_wolf, 1).
+cartoon(policeman_from_rublevka, 0).
+cartoon(kadetstvo, 0).
+cartoon(elki, 0).
+cartoon(smeshariki, 1).
+
+cartoon(barboskiny, 1).
+cartoon(brat, 0).
+cartoon(shawshank_redemption, 0). % "Побег из Шоушенка"
+cartoon(inception, 0). % "Начало"
+cartoon(departed, 0). % "Отступники"
+
+% неизвестные дополнения к 3 вопросу
+% cartoon(back_to_future, 0).
+% cartoon(titanic, 0).
+% cartoon(closed_school, 0).
+% cartoon(friends, 0).
+% cartoon(luntic, 1).
+
+% cartoon(queens_gambit, 0).
+% cartoon(boy_in_stripped_pijama, 0).
+% cartoon(operation_y, 0).
+% cartoon(star_wars, 0).
+% cartoon(masha_and_bear, 1).
+
+
+% ////////////////////////////////////////////////////////////////////////////////
+% 4) Многосерийный фильм? 2 - да, 1 - нет, 0 - это сериал, а не фильм.
+many_series(interstellar, 1).
+many_series(rick_and_morty, 0).
+many_series(the_green_mile, 1).
+many_series(green_book, 1).
+many_series(gravity_falls, 0).
+
+many_series(winx_club, 0).
+many_series(chappie, 1).
+many_series(i_robot, 1).
+many_series(harry_potter, 2).
+many_series(lord_of_rings, 2).
+
+many_series(simpsons, 0).
+many_series(south_park, 0).
+many_series(big_bang_theory, 0).
+many_series(riverdale, 0).
+many_series(teen_wolf, 0).
+
+many_series(fiksiki, 0).
+many_series(brilliant_hand, 1).
+many_series(three_bogatyrs, 2).
+many_series(chernobyl, 0).
+many_series(fathers_daughters, 0).
+
+many_series(ivan_and_wolf, 2).
+many_series(policeman_from_rublevka, 0).
+many_series(kadetstvo, 0).
+many_series(elki, 2).
+many_series(smeshariki, 0).
+
+many_series(barboskiny, 0).
+many_series(brat, 2).
+many_series(shawshank_redemption, 1). % "Побег из Шоушенка"
+many_series(inception, 1). % "Начало"
+many_series(departed, 1). % "Отступники"
+
+% неизвестные дополнения к 4 вопросу
+% many_series(back_to_future, 2).
+% many_series(titanic, 1).
+% many_series(closed_school, 0).
+% many_series(friends, 0).
+% many_series(luntic, 0).
+
+% many_series(queens_gambit, 0).
+% many_series(boy_in_stripped_pijama, 1).
+% many_series(operation_y, 1).
+% many_series(star_wars, 2).
+% many_series(masha_and_bear, 0).
+
+
+
+% ////////////////////////////////////////////////////////////////////////////////
+% 5) Для детей?? 2 - точно да (малыши даже поймут), 1 - не совсем
+% (могут смотреть и взрослые дети), 0 - СОВСЕМ НЕ ДЕТСКИЙ фильм.
+child(interstellar, 0).
+child(rick_and_morty, 0).
+child(the_green_mile, 0).
+child(green_book, 0).
+child(gravity_falls, 1).
+
+child(winx_club, 1).
+child(chappie, 0).
+child(i_robot, 0).
+child(harry_potter, 1).
+child(lord_of_rings, 0).
+
+child(simpsons, 0).
+child(south_park, 0).
+child(big_bang_theory, 0).
+child(riverdale, 0).
+child(teen_wolf, 0).
+
+child(fiksiki, 2).
+child(brilliant_hand, 0).
+child(three_bogatyrs, 2).
+child(chernobyl, 0).
+child(fathers_daughters, 1).
+
+child(ivan_and_wolf, 2).
+child(policeman_from_rublevka, 0).
+child(kadetstvo, 0).
+child(elki, 1).
+child(smeshariki, 2).
+
+child(barboskiny, 2).
+child(brat, 0).
+child(shawshank_redemption, 0). % "Побег из Шоушенка"
+child(inception, 0). % "Начало"
+child(departed, 0). % "Отступники"
+
+% неизвестные дополнения к 4 вопросу
+% child(back_to_future, 0).
+% child(titanic, 0).
+% child(closed_school, 0).
+% child(friends, 0).
+% child(luntic, 2).
+
+% child(queens_gambit, 0).
+% child(boy_in_stripped_pijama, 0).
+% child(operation_y, 0).
+% child(star_wars, 0).
+% child(masha_and_bear, 2).
+
+
+
+% ////////////////////////////////////////////////////////////////////////////////
+% ВОПРОСЫ:
+question1(X1):-	write("Is this film or serial?"),nl,
+				write("1. Film"),nl,
+				write("0. Serial"),nl,
+				read(X1).
+
+question2(X2):-	write("Is that a foreign movie ?"),nl,
+				write("1. Our *RUSSIA IS BEST!*"),nl,
+				write("0. Foreign"),nl,
+				read(X2).
+
+question3(X3):-	write("Is that movie a cartoon?"),nl,
+				write("1. Cartoon"),nl,
+				write("0. Not cartoon"),nl,
+				read(X3).
+
+question4(X4):-	write("Is that a multi-part movie?"),nl,
+				write("2. Yes, it is"),nl,
+				write("1. No, it isn't"),nl,
+                                write("0. It's a SERIAL WTF"),nl,
+				read(X4).
