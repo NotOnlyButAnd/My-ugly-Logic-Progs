@@ -47,7 +47,7 @@ film(departed, 1). % "Отступники"
 
 % film(queens_gambit, 0).
 % film(boy_in_stripped_pijama, 1).
-% film(operation_y, 1).
+% film(white_beam_black_ear, 1).
 % film(star_wars, 1).
 % film(masha_and_bear, 0).
 
@@ -100,7 +100,7 @@ our_film(departed, 0). % "Отступники"
 
 % our_film(queens_gambit, 0).
 % our_film(boy_in_stripped_pijama, 0).
-% our_film(operation_y, 1).
+% our_film(white_beam_black_ear, 1).
 % our_film(star_wars, 0).
 % our_film(masha_and_bear, 1).
 
@@ -152,7 +152,7 @@ cartoon(departed, 0). % "Отступники"
 
 % cartoon(queens_gambit, 0).
 % cartoon(boy_in_stripped_pijama, 0).
-% cartoon(operation_y, 0).
+% cartoon(white_beam_black_ear, 0).
 % cartoon(star_wars, 0).
 % cartoon(masha_and_bear, 1).
 
@@ -204,7 +204,7 @@ many_series(departed, 1). % "Отступники"
 
 % many_series(queens_gambit, 0).
 % many_series(boy_in_stripped_pijama, 1).
-% many_series(operation_y, 1).
+% many_series(white_beam_black_ear, 1).
 % many_series(star_wars, 2).
 % many_series(masha_and_bear, 0).
 
@@ -258,9 +258,275 @@ child(departed, 0). % "Отступники"
 
 % child(queens_gambit, 0).
 % child(boy_in_stripped_pijama, 0).
-% child(operation_y, 0).
+% child(white_beam_black_ear, 1).
 % child(star_wars, 0).
 % child(masha_and_bear, 2).
+
+
+% ////////////////////////////////////////////////////////////////////////////////
+% 6) Кто главный герой этой картины? 4 - человек, 3 - животное, 2 -
+% человек и животное, 1 - робот, 0 - неопределено.
+
+actor(interstellar, 4).
+actor(rick_and_morty, 4).
+actor(the_green_mile, 4).
+actor(green_book, 4).
+actor(gravity_falls, 4).
+
+actor(winx_club, 0).
+actor(chappie, 1).
+actor(i_robot, 1).
+actor(harry_potter, 4).
+actor(lord_of_rings, 0).
+
+actor(simpsons, 0).
+actor(south_park, 4).
+actor(big_bang_theory, 4).
+actor(riverdale, 4).
+actor(teen_wolf, 0).
+
+actor(fiksiki, 0).
+actor(brilliant_hand, 4).
+actor(three_bogatyrs, 4).
+actor(chernobyl, 4).
+actor(fathers_daughters, 4).
+
+actor(ivan_and_wolf, 2).
+actor(policeman_from_rublevka, 4).
+actor(kadetstvo, 4).
+actor(elki, 4).
+actor(smeshariki, 3).
+
+actor(barboskiny, 3).
+actor(brat, 4).
+actor(shawshank_redemption, 4). % "Побег из Шоушенка"
+actor(inception, 4). % "Начало"
+actor(departed, 4). % "Отступники"
+
+% неизвестные дополнения к 4 вопросу
+% actor(back_to_future, 4).
+% actor(titanic, 4).
+% actor(closed_school, 4).
+% actor(friends, 4).
+% actor(luntic, 0).
+
+% actor(queens_gambit, 4).
+% actor(boy_in_stripped_pijama, 4).
+% actor(white_beam_black_ear, 2).
+% actor(star_wars, 0).
+% actor(masha_and_bear, 2).
+
+
+% ////////////////////////////////////////////////////////////////////////////////
+% 7) Какой жанр у фильма? 4 - фантастика, 3 - комедия, 2 - драма, 1 - криминал, 0 - что-то другое
+
+genre(interstellar, 4).
+genre(rick_and_morty, 4).
+genre(the_green_mile, 2).
+genre(green_book, 2).
+genre(gravity_falls, 4).
+
+genre(winx_club, 0).
+genre(chappie, 4).
+genre(i_robot, 4).
+genre(harry_potter, 4).
+genre(lord_of_rings, 4).
+
+genre(simpsons, 3).
+genre(south_park, 3).
+genre(big_bang_theory, 3).
+genre(riverdale, 1).
+genre(teen_wolf, 4).
+
+genre(fiksiki, 0).
+genre(brilliant_hand, 3).
+genre(three_bogatyrs, 0).
+genre(chernobyl, 4).
+genre(fathers_daughters, 3).
+
+genre(ivan_and_wolf, 0).
+genre(policeman_from_rublevka, 3).
+genre(kadetstvo, 3).
+genre(elki, 3).
+genre(smeshariki, 0).
+
+genre(barboskiny, 0).
+genre(brat, 2).
+genre(shawshank_redemption, 2). % "Побег из Шоушенка"
+genre(inception, 4). % "Начало"
+genre(departed, 1). % "Отступники"
+
+% неизвестные дополнения к 4 вопросу
+% genre(back_to_future, 4).
+% genre(titanic, 2).
+% genre(closed_school, 4).
+% genre(friends, 3).
+% genre(luntic, 0).
+
+% genre(queens_gambit, 2).
+% genre(boy_in_stripped_pijama, 2).
+% genre(white_beam_black_ear, 2).
+% genre(star_wars, 4).
+% genre(masha_and_bear, 0).
+
+
+% ////////////////////////////////////////////////////////////////////////////////
+% 8) Где происходит действие фильма? 4 - Космос, 3 - США, 2 - Советский Союз\Россия, 1 - Германия, 0 - что-то другое
+
+place(interstellar, 4).
+place(rick_and_morty, 0).
+place(the_green_mile, 3).
+place(green_book, 3).
+place(gravity_falls, 0).
+
+place(winx_club, 0).
+place(chappie, 3).
+place(i_robot, 3).
+place(harry_potter, 0).
+place(lord_of_rings, 0).
+
+place(simpsons, 0).
+place(south_park, 3).
+place(big_bang_theory, 3).
+place(riverdale, 0).
+place(teen_wolf, 0).
+
+place(fiksiki, 0).
+place(brilliant_hand, 2).
+place(three_bogatyrs, 0).
+place(chernobyl, 2).
+place(fathers_daughters, 2).
+
+place(ivan_and_wolf, 0).
+place(policeman_from_rublevka, 2).
+place(kadetstvo, 2).
+place(elki, 2).
+place(smeshariki, 0).
+
+place(barboskiny, 0).
+place(brat, 2).
+place(shawshank_redemption, 3). % "Побег из Шоушенка"
+place(inception, 0). % "Начало"
+place(departed, 3). % "Отступники"
+
+% неизвестные дополнения к 4 вопросу
+% place(back_to_future, 0).
+% place(titanic, 0).
+% place(closed_school, 2).
+% place(friends, 3).
+% place(luntic, 0).
+
+% place(queens_gambit, 0).
+% place(boy_in_stripped_pijama, 1).
+% place(white_beam_black_ear, 2).
+% place(star_wars, 4).
+% place(masha_and_bear, 0).
+
+
+% ////////////////////////////////////////////////////////////////////////////////
+% 9) Дата производства? 2 - до 2000, 1 - 2000 - 2010, 0 - 2010 - сегодня,
+
+date(interstellar, 0).
+date(rick_and_morty, 0).
+date(the_green_mile, 2).
+date(green_book, 0).
+date(gravity_falls, 0).
+
+date(winx_club, 1).
+date(chappie, 0).
+date(i_robot, 1).
+date(harry_potter, 1).
+date(lord_of_rings, 1).
+
+date(simpsons, 2).
+date(south_park, 2).
+date(big_bang_theory, 1).
+date(riverdale, 0).
+date(teen_wolf, 0).
+
+date(fiksiki, 0).
+date(brilliant_hand, 2).
+date(three_bogatyrs, 1).
+date(chernobyl, 0).
+date(fathers_daughters, 1).
+
+date(ivan_and_wolf, 0).
+date(policeman_from_rublevka, 0).
+date(kadetstvo, 1).
+date(elki, 1).
+date(smeshariki, 1).
+
+date(barboskiny, 1).
+date(brat, 2).
+date(shawshank_redemption, 2). % "Побег из Шоушенка"
+date(inception, 1). % "Начало"
+date(departed, 1). % "Отступники"
+
+% неизвестные дополнения к 4 вопросу
+% date(back_to_future, 2).
+% date(titanic, 2).
+% date(closed_school, 0).
+% date(friends, 2).
+% date(luntic, 1).
+
+% date(queens_gambit, 0).
+% date(boy_in_stripped_pijama, 1).
+% date(operation_y, 2).
+% date(star_wars, 2).
+% date(masha_and_bear, 1).
+
+
+% ////////////////////////////////////////////////////////////////////////////////
+% 10) Играл ли этот актер в вашем фильме? 3 - Морган Фримен, 2 - Павел Прилучный, 1 - Копатыч, 0 - никто
+
+actor2(interstellar, 0).
+actor2(rick_and_morty, 0).
+actor2(the_green_mile, 0).
+actor2(green_book, 0).
+actor2(gravity_falls, 0).
+
+actor2(winx_club, 0).
+actor2(chappie, 0).
+actor2(i_robot, 0).
+actor2(harry_potter, 0).
+actor2(lord_of_rings, 0).
+
+actor2(simpsons, 0).
+actor2(south_park, 0).
+actor2(big_bang_theory, 0).
+actor2(riverdale, 0).
+actor2(teen_wolf, 0).
+
+actor2(fiksiki, 0).
+actor2(brilliant_hand, 0).
+actor2(three_bogatyrs, 0).
+actor2(chernobyl, 0).
+actor2(fathers_daughters, 0).
+
+actor2(ivan_and_wolf, 0).
+actor2(policeman_from_rublevka, 0).
+actor2(kadetstvo, 0).
+actor2(elki, 0).
+actor2(smeshariki, 1).
+
+actor2(barboskiny, 0).
+actor2(brat, 0).
+actor2(shawshank_redemption, 3). % "Побег из Шоушенка"
+actor2(inception, 0). % "Начало"
+actor2(departed, 0). % "Отступники"
+
+% неизвестные дополнения к 4 вопросу
+% actor2(back_to_future, 0).
+% actor2(titanic, 0).
+% actor2(closed_school, 2).
+% actor2(friends, 0).
+% actor2(luntic, 0).
+
+% actor2(queens_gambit, 0).
+% actor2(boy_in_stripped_pijama, 0).
+% actor2(operation_y, 0).
+% actor2(star_wars, 0).
+% actor2(masha_and_bear, 0).
 
 
 
@@ -286,3 +552,46 @@ question4(X4):-	write("Is that a multi-part movie?"),nl,
 				write("1. No, it isn't"),nl,
                                 write("0. It's a SERIAL WTF"),nl,
 				read(X4).
+
+question5(X5):-	write("Is that a child movie?"),nl,
+				write("2. Yes, it is *for little kids*"),nl,
+				write("1. Not at all (for teenagers)"),nl,
+                                write("0. It's a movie for ADULT!"),nl,
+				read(X5).
+
+question6(X6):-	write("Who's a main actor?"),nl,
+				write("4. Human"),nl,
+				write("3. Animal"),nl,
+                                write("2. Human & animal"),nl,
+                                write("1. Robot"),nl,
+                                write("0. Can't define"),nl,
+				read(X6).
+
+question7(X7):-	write("Movie genre *janr kino*"),nl,
+				write("4. Fantastic"),nl,
+				write("3. Comedy"),nl,
+                                write("2. Drama"),nl,
+                                write("1. Criminal"),nl,
+                                write("0. Smth other"),nl,
+				read(X7).
+
+question8(X8):-	write("Where the action take place?"),nl,
+				write("4. Space"),nl,
+				write("3. USA"),nl,
+                                write("2. Russia/USSR"),nl,
+                                write("1. Germany"),nl,
+                                write("0. Smth other"),nl,
+				read(X8).
+
+question9(X9):-	write("When was the movie created?"),nl,
+				write("2. Before 2000"),nl,
+				write("1. 2000 - 2010"),nl,
+                                write("0. 2010 - today"),nl,
+				read(X9).
+
+question10(X10):-	write("Does this actor played in your movie?"),nl,
+				write("3. Morgan Freeman"),nl,
+				write("2. Pavel Priluchny"),nl,
+                                write("1. Kopatych"),nl,
+                                write("0. None of them"),nl,
+				read(X10).
