@@ -36,6 +36,13 @@ fib(2,1, 1):-!.
 fib(N, X, X1):- N1 is N - 1, fib(N1, X2, X), X1 is X + X2.
 fib(N,X):- fib(N, _, X).
 
+% task6 - число Фиббоначи с номером N
+% рекурсия ВНИЗ
+fib1(N,_,X,N,X):-!.
+fib1(I, X1, X2, N, X):- I1 is I + 1, Xnew is X1 + X2, fib1(I1, X2, Xnew, N, X).
+fib1(1,1):-!.
+fib1(N,X):- fib1(2, 1, 1, N, X).
+
 % task7 - сумма цифр числа
 % рекурсия ВВЕРХ
 sum(0,0):-!.
