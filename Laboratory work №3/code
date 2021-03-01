@@ -1,4 +1,4 @@
-%task1
+%task1 - maximum (X,Y)
 %max(X,Y,Z):-X>Y,Z is X.
 %max(X,Y,Z):-X=<Y,Z is Y.
 
@@ -8,27 +8,41 @@
 max(X,Y,X):-X>Y,!.
 max(_,Y,Y).
 
-%task2
+%task2 - maximum (X, Y, U)
 max(X,Y,U,X):-X>Y,X>U,!.
 max(_,Y,U,Y):-Y>U,!.
 max(_,_,U,U).
 
-%2*
+%2* - maximum (X, Y, U) но с использованием max (X, Y)
 max1(X,Y,U,Z):-max(X,Y,A),max(A,U,Z).
 
-%task3
-fact(0,1):-!.
-fact(N,X):-N1 is N-1,fact(N1,X1),X is X1*N.
+% task3 - факториал
+% рекурсия ВВЕРХ
+fact(0,1):- !.
+fact(N,X):- N1 is N-1, fact(N1,X1), X is X1*N.
 
+% task4 - факториал
+% рекурсия ВНИЗ
 fact1(N,X,N,X):-!.
 fact1(I,F,N,X):-I1 is I+1,F1 is F*I1,fact1(I1,F1,N,X).
 fact1(N,X):-fact1(0,1,N,X).
 
-%task7
+% task5 - число фиббоначи с номером N
+% рекурсия ВВЕРХ
+% 1 1 2 3 5 8 13 21 34 ... - ЧИСЛА
+% 1 2 3 4 5 6  7  8  9 ... - НОМЕРА
+fib(1,_, 1):-!.
+fib(2,1, 1):-!.
+fib(N, X, X1):- N1 is N - 1, fib(N1, X2, X), X1 is X + X2.
+fib(N,X):- fib(N, _, X).
+
+% task7 - сумма цифр числа
+% рекурсия ВВЕРХ
 sum(0,0):-!.
 sum(N,S):-N1 is N div 10, sum(N1,S1), S is S1+N mod 10.
 
-%task8
+% task8 - сумма цифр числа
+% рекурсия ВНИЗ
 sum(N,S):-sum(N,0,S).
 sum(0,S,S):-!.
 sum(A,Sum,S):-Ad is A mod 10, Am is A mod 10, Sum1 is Sum + Am, sum(Ad, Sum1, S).
