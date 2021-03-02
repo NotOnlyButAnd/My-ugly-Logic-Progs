@@ -76,4 +76,13 @@ max_not3(N, Max):- N1 is N div 10, max_not3(N1, Max1), T is N mod 10,
 task11_1:- write("N: "), read(N), max_not3(N,Max),
     (Max is -1 -> write("There is no such digit!"); write("Max: "), write(Max)).
 
+% task11.2 - макс цифра числа, не делящаяся на 3
+% рекурсия ВНИЗ
+max_not3_down(N, Max):- max_not3_down(N, -1, Max).
+max_not3_down(0, Max, Max):-!.
+max_not3_down(N, CurMax, Max):- M10 is N mod 10, M3 is M10 mod 3,
+    (0 \= M3 -> max(CurMax, M10, CurMax1); CurMax1 is CurMax),
+    N1 is N div 10, max_not3_down(N1, CurMax1, Max).
+task11_2:- write("N: "), read(N), max_not3_down(N,Max),
+    (Max is -1 -> write("There is no such digit!"); write("Max: "), write(Max)).
 
