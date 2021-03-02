@@ -59,3 +59,11 @@ sum1(A,Sum,S):-Ad is A mod 10, Am is A mod 10, Sum1 is Sum + Am, sum(Ad, Sum1, S
 % T отдельно потому что умножение не рбаботало почему-то
 mul(0,1):-!.
 mul(N,M):-N1 is N div 10, mul(N1,M1), T is N mod 10, M is M1 * T.
+
+%task10 - произведение цифр числа
+% рекурсия ВНИЗ
+mul1(0, 0):-!.
+mul1(N,M):-mul1(N,1,M).
+mul1(0,M,M):-!.
+mul1(A,Mul,M):- Ad is A div 10, Am is A mod 10,
+    Mul1 is Mul * Am, mul1(Ad, Mul1, M).
