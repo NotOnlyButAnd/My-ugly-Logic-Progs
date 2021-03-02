@@ -72,8 +72,8 @@ mul1(A,Mul,M):- Ad is A div 10, Am is A mod 10,
 % рекурсия ВВЕРХ
 max_not3(0, -1):-!.
 max_not3(N, Max):- N1 is N div 10, max_not3(N1, Max1), T is N mod 10,
-    T1 is T mod 3, (0 \= T1 -> max(Max1, T, Max);
-                   !, N2 is N div 10, max_not3(N2,Max)).
+    T1 is T mod 3, (0 \= T1 -> max(Max1, T, Max); Max is Max1).
 task11_1:- write("N: "), read(N), max_not3(N,Max),
     (Max is -1 -> write("There is no such digit!"); write("Max: "), write(Max)).
+
 
