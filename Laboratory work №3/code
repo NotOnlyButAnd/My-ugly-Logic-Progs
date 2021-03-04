@@ -136,4 +136,24 @@ count_chet_notvzpr1(N,M,CurrCount,Count):-
     Mnew is M-1,
     count_chet_notvzpr1(N,Mnew,CurrCount1,Count).
 
+% task15
+% на наименьший делитель исходного числа (> 1)
+naim_del(N, 1, N):-!.
+naim_del(N, CurDel, MinDel):- CurDelNew is CurDel - 1,
+    naim_del(N,CurDelNew,MinDelNew),
+    ((0 is N mod CurDel, CurDel < MinDelNew) ->
+    MinDel is CurDel; MinDel is MinDelNew).
 
+max_notvzpr_ndel(_,1,1,_):-!.
+max_notvzpr_ndel(N,M,Max,MinDel):- Mnew is M-1,
+    max_notvzpr_ndel(N,Mnew,MaxNew,MinDel),
+    nod(N,M,Nod), T is M mod MinDel,
+    ((Nod \= 1, 0 \= T, M > MaxNew) -> Max is M; Max is MaxNew).
+
+sum_bel5(0,0):-!.
+sum_bel5(N,S):-N1 is N div 10, sum_bel5(N1,S1), T is N mod 10,
+    (T < 5 -> S is S1 + T; S is S1).
+
+task15(N,Mul):- T is N/2, naim_del(N,T,MinDel),
+    M is N-1, max_notvzpr_ndel(N,M,Max,MinDel),
+    sum_bel5(N,Sum), Mul is Max * Sum.
