@@ -106,3 +106,15 @@ count_del(_, 1, 2):-!.
 count_del(N, Del, Count):- DelNew is Del - 1, count_del(N, DelNew,CountNew),
     T is N mod Del, (0 = T -> Count is CountNew + 1; Count is CountNew).
 
+% task13 - много букв
+posl(1,1):-!.
+posl(N,Count):-  T is N mod 2,
+    (0 = T ->
+    (Nnew is N / 2, posl(Nnew, CountNew), Count is CountNew + 1);
+    (Nnew is 3 * N + 1, posl(Nnew,CountNew), Count is CountNew + 1)).
+task13(2,2, 1):-!.
+task13(MaxNum, MaxCount, N):- Nnew is N - 1, task13(MaxNumNew,CountNew,Nnew),
+    posl(N,Count), (Count > CountNew ->
+                   (MaxCount is Count, MaxNum is N);
+                   (MaxCount is CountNew, MaxNum is MaxNumNew)).
+
