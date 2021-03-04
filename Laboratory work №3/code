@@ -118,11 +118,22 @@ task13(MaxNum, MaxCount, N):- Nnew is N - 1, task13(MaxNumNew,CountNew,Nnew),
                    (MaxCount is Count, MaxNum is N);
                    (MaxCount is CountNew, MaxNum is MaxNumNew)).
 
-% task14.1 - кол-во четных чисел, не взаимно простых с данным.
+% task14.1 - кол-во четных чисел, ВЗАИМНО простых с данным.
 % (дополнительно сам придумал: и меньше этого числа, а то бесконечность)
 % рекурсия ВВЕРХ
 count_chet_notvzpr(N, Count):- M is N - 1, count_chet_notvzpr(N,M,Count).
 count_chet_notvzpr(_,1,0):-!.
 count_chet_notvzpr(N,M,Count):- Mnew is M-1, count_chet_notvzpr(N,Mnew,CountNew),
     nod(N,M,Nod),(Nod = 1 -> Count is CountNew + 1; Count is CountNew).
+
+% task14.2 - кол-во четных чисел, НЕ взаимно простых с данным.
+% (дополнительно сам придумал: и меньше этого числа, а то бесконечность)
+% рекурсия ВНИЗ
+count_chet_notvzpr1(N, Count):- M is N-1, count_chet_notvzpr1(N,M,0,Count).
+count_chet_notvzpr1(_,1,Count, Count):-!.
+count_chet_notvzpr1(N,M,CurrCount,Count):-
+    nod(N,M,Nod),(Nod \= 1 -> CurrCount1 is CurrCount + 1; CurrCount1 is CurrCount),
+    Mnew is M-1,
+    count_chet_notvzpr1(N,Mnew,CurrCount1,Count).
+
 
