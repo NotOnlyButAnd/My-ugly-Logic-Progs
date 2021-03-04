@@ -157,3 +157,12 @@ sum_bel5(N,S):-N1 is N div 10, sum_bel5(N1,S1), T is N mod 10,
 task15(N,Mul):- T is N/2, naim_del(N,T,MinDel),
     M is N-1, max_notvzpr_ndel(N,M,Max,MinDel),
     sum_bel5(N,Sum), Mul is Max * Sum.
+
+% task16
+% надо составить все перестановки из n элементов
+% и искать среди них простой максимум
+% task16(N):-!.
+
+% предикат создания первой перестановки 1234...n
+first_perm(0, 1, _):-!.
+first_perm(N, Perm, I):-!.
