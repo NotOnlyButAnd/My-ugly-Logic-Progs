@@ -86,3 +86,23 @@ max_not3_down(N, CurMax, Max):- M10 is N mod 10, M3 is M10 mod 3,
 task11_2:- write("N: "), read(N), max_not3_down(N,Max),
     (Max is -1 -> write("There is no such digit!"); write("Max: "), write(Max)).
 
+% task12.1 - НОД 2-х чисел
+nod(N,M,Nod):- max(N,M,X), nod(N,M,X, Nod).
+nod(_, _, 1, 1):-!.
+nod(N,M,CurDel,Nod):- CurDelNew is CurDel - 1, nod(N,M,CurDelNew, NodNew),
+    ((0 is N mod CurDel, 0 is M mod CurDel) -> Nod is CurDel; Nod is NodNew).
+
+% task12.2 - Проверить число на простоту
+% НЕ ПРОВЕРЯТЬ ЕДИНИЦУ И НОЛЬ!!!
+is_easy_num(N):- Nnew is N div 2, is_easy_num(N,Nnew).
+is_easy_num(_, 1):-!.
+is_easy_num(N, Del):- DelNew is Del - 1, is_easy_num(N, DelNew), T is N mod Del,
+    0 \= T.
+
+% task12.3 - кол-во делителей числа найти
+% НЕ ПРОВЕРЯТЬ ЕДИНИЦУ И НОЛЬ!!!
+count_del(N,Count):- Nnew is N div 2, count_del(N,Nnew, Count).
+count_del(_, 1, 2):-!.
+count_del(N, Del, Count):- DelNew is Del - 1, count_del(N, DelNew,CountNew),
+    T is N mod Del, (0 = T -> Count is CountNew + 1; Count is CountNew).
+
