@@ -72,3 +72,12 @@ append1([H|T1], List2, [H|T2]):- append1(T1, List2, T2).
 mirror([H|[]], [H|[]]):-!.
 mirror([H|T], ListNew):- mirror(T, List), append1(List,[H], ListNew).
 
+% task11 - если sublist в list в том же порядке - true
+p([],[],0):-!.
+p([],[],1):-!.
+p([],[_|_],1):-!.
+p([Hsub|Tsub], [H|T],Flag):- (Hsub = H ->
+                             (Flag1 is 1, p(Tsub,T,Flag1));
+                             (Flag=0 -> p([Hsub|Tsub],T,Flag);
+                             ([H|T] \= [] -> p([Hsub|Tsub],T,0);fail))).
+p(SubList,List):-p(SubList,List,0).
