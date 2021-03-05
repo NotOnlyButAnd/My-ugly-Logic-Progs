@@ -199,3 +199,30 @@ main_10:- read_10(N,List1,M,List2), max(N,M,Max),
     (N = Max -> count_rep_10(List1,List2,[],0,Count);
     count_rep_10(List2,List1,[],0,Count)),
     write_10(Count).
+
+
+% Задача 22 - Дан массив. И интервал (a,b). Найти кол-во минимумов в
+% этом интервале (по индексам интервал)
+read_22(N,List,A,B):- write("Write N: "), read(N),
+    write("Input lists elems: "), nl, read_list(N,List),
+    write("Write your interval..."),nl, write("a: "), read(A),
+    write("b: "), read(B).
+write_22(Count):- write("Count of min in interval: "),nl, write(Count).
+
+% считает ко-лво минимумов в интервале (по индексам)
+% +[H1|T1] - список исходный
+% +Min - min эл-т списка (ну или любой другой, в задаче - min)
+% +I - индекс текущего эл-та
+% +А - начало интервала
+% +В - конец интервала
+% +CurrCount - текущее кол-во накопленное
+% ?Count - итоговое кол-во
+count_in_interval([],_,_,_,_,Count,Count):-!.
+count_in_interval([H|T],Min,I,A,B,CurrC,Count):-
+    ((I>A, I<B) ->
+    (H = Min -> NewCurrC is CurrC + 1; NewCurrC is CurrC);
+    NewCurrC is CurrC), I1 is I + 1,
+    count_in_interval(T,Min,I1,A,B,NewCurrC,Count).
+
+main_22:- read_22(N,List,A,B), min_list_up(List,Min),
+    count_in_interval(List,Min,0,A,B,0,Count), write_22(Count).
