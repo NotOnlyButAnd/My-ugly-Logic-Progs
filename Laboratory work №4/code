@@ -242,3 +242,20 @@ max_list_up([H|T], Max):- max_list_up(T, Max1),
 main_24:-read_24(N,[H|T]), max_list_up([H|T],Max1),
     del_all_same([H|T],Max1,List2), max_list_up(List2,Max2),
     write_24(Max1,Max2).
+
+
+% Задача 31 - найти кол-во четных эл-тов в массиве
+read_31(N,List):- write("Write N: "), read(N), write("Input lists elems: "),nl,
+    read_list(N,List).
+write_31(Count):- write("Count of chetnyh: "), write(Count).
+
+% подсчет кол-ва четных эл-тов
+% +[H|T] - список
+% +CurC - уже посчитанное кол-во
+% ?Count - итоговое кол-во четных
+count_chetn([],C,C):-!.
+count_chetn([H|T],CurC,Count):-
+    (0 is H mod 2 -> CurC1 is CurC + 1; CurC1 is CurC),
+    count_chetn(T,CurC1,Count).
+
+main_31:-read_31(N,List), count_chetn(List,0,Count), write_31(Count).
