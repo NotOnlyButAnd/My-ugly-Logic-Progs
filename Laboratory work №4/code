@@ -45,6 +45,14 @@ min_list_up([H|[]], H):-!.
 min_list_up([H|T], Min):- min_list_up(T, Min1),
     (H < Min1 -> Min is H; Min is Min1).
 
+% task7 - min эл-т списка
+% рекурсия ВНИЗ
+min_list_down([H|T], Min):- min_list_down([H|T], H, Min).
+min_list_down([], Min, Min):-!.
+min_list_down([H|T], CurMin, Min):-
+    (H < CurMin -> CurMin1 is H; CurMin1 is CurMin),
+    min_list_down(T, CurMin1, Min).
+
 % task9 - true если эл-т есть в списке
 in_list([El|_],El).
 in_list([_|Tail],El):- in_list(Tail, El).
