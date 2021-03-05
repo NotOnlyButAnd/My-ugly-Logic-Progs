@@ -97,3 +97,12 @@ del_all_same([H|T],El,NewList, LastList):-
     append1(NewList,[],NewList1)),
     del_all_same(T, El, NewList1, LastList).
 del_all_same(List,El, Itog):-del_all_same(List, El, [], Itog).
+
+% task14 - все эл-ты по 1 разу?
+is_wout_repeat([], _):-!.
+is_wout_repeat([H|T], ElemsList):-
+    (in_list(ElemsList, H) -> fail;
+    append1(ElemsList, [H], NewElemsList)),
+    is_wout_repeat(T, NewElemsList).
+is_wout_repeat([]):-!.
+is_wout_repeat([H|T]):- is_wout_repeat(T,[H]).
