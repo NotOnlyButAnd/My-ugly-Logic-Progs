@@ -121,3 +121,7 @@ get_wout_rep([H|T], Itog):- get_wout_rep([H|T], [H], Itog).
 count_rep([],_,0):-!.
 count_rep([H|T],El,Count):- count_rep(T,El,Count1),
     (El = H -> Count is Count1 + 1; Count is Count1).
+
+% task 17 - длина списка
+length_list([], 0):-!.
+length_list([_|T], L):- length_list(T, L1), L is L1 + 1.
