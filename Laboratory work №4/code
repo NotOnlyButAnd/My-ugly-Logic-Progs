@@ -40,6 +40,11 @@ pr4_5:-write("Write N: "), read(N), read_list(N,List), write("Write elem num: ")
     write("elem: "), write(Elem), !.
 pr4_5:-write("there is no such number!").
 
+% task6 - min эл-т списка
+min_list_up([H|[]], H):-!.
+min_list_up([H|T], Min):- min_list_up(T, Min1),
+    (H < Min1 -> Min is H; Min is Min1).
+
 % task9 - true если эл-т есть в списке
 in_list([El|_],El).
 in_list([_|Tail],El):- in_list(Tail, El).
