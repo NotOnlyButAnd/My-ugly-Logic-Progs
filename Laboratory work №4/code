@@ -259,3 +259,27 @@ count_chetn([H|T],CurC,Count):-
     count_chetn(T,CurC1,Count).
 
 main_31:-read_31(N,List), count_chetn(List,0,Count), write_31(Count).
+
+
+% задача 34 - найти эл-ты значение которых принадлежит [а,b]
+read_34(N,List,A,B):- write("Write N: "), read(N),
+    write("Input lists elems: "), nl, read_list(N,List),
+    write("Write your otrezok..."),nl, write("a: "), read(A),
+    write("b: "), read(B).
+write_34(List):- write("Elems in otrezok: "),nl, write_list(List).
+
+% +[H|T] - список
+% +A - начало отрезка
+% +B - конец отрезка
+% +CurRes - накопленные числа из отрезка(без повторов)
+% ?Result - итоговый результат
+get_all_in_seg([],_,_,Result,Result):-!.
+get_all_in_seg([H|T],A,B,CurRes,Result):-
+    ((H>=A,H=<B) ->
+    (in_list(CurRes,H) -> append1(CurRes,[],CurRes1);
+     append1(CurRes,[H],CurRes1));
+    append1(CurRes,[],CurRes1)),
+    get_all_in_seg(T,A,B,CurRes1,Result).
+
+main_34:-read_34(N,List,A,B), get_all_in_seg(List,A,B,[],Result),
+    write_34(Result).
