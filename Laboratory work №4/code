@@ -81,3 +81,11 @@ p([Hsub|Tsub], [H|T],Flag):- (Hsub = H ->
                              (Flag=0 -> p([Hsub|Tsub],T,Flag);
                              ([H|T] \= [] -> p([Hsub|Tsub],T,0);fail))).
 p(SubList,List):-p(SubList,List,0).
+
+% task12 - удалить эл-т с заданным номером
+del_by_num([],_,NewList,_,NewList):-!.
+del_by_num([H|T],Num,NewList, I, LastList):- I1 is I + 1,
+    (I \= Num -> append1(NewList, [H], NewList1);
+    append1(NewList,[],NewList1)),
+    del_by_num(T, Num, NewList1, I1, LastList).
+del_by_num(List,Num, Itog):-del_by_num(List, Num, [], 0, Itog).
