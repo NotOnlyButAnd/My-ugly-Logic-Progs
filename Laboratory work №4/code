@@ -226,3 +226,19 @@ count_in_interval([H|T],Min,I,A,B,CurrC,Count):-
 
 main_22:- read_22(N,List,A,B), min_list_up(List,Min),
     count_in_interval(List,Min,0,A,B,0,Count), write_22(Count).
+
+
+% Задача 24 - Дан массив. Найти 2 наибольших элемента
+read_24(N,List):- write("Write N: "), read(N), write("Input lists elems: "),nl,
+    read_list(N,List).
+write_24(Max1,Max2):- write("Maxes: "),nl, write(Max1),nl, write(Max2).
+
+% +[H|T] - список
+% ?Max - максимальный эл-т
+max_list_up([H|[]], H):-!.
+max_list_up([H|T], Max):- max_list_up(T, Max1),
+    (H > Max1 -> Max is H; Max is Max1).
+
+main_24:-read_24(N,[H|T]), max_list_up([H|T],Max1),
+    del_all_same([H|T],Max1,List2), max_list_up(List2,Max2),
+    write_24(Max1,Max2).
