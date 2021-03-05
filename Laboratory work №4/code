@@ -125,3 +125,39 @@ count_rep([H|T],El,Count):- count_rep(T,El,Count1),
 % task 17 - длина списка
 length_list([], 0):-!.
 length_list([_|T], L):- length_list(T, L1), L is L1 + 1.
+
+
+% Задача 9 - Дан массив целых чисел
+% Найти эл-ты, находящиеся перед последним минимальным
+% На выход поступит список чиел всех подряд, идущих до last_min
+read_9(N,List):- write("Write N: "), read(N), write("Input lists elems: "),nl,
+    read_list(N,List).
+write_9(List):- write("All elems befoe last min: "),nl, write_list(List).
+
+% Находит индекс последнего минимума
+% +[H|T] - список, в котором ищем
+% +Min - числовое значение минимума
+% +I - индекс текущего эл-та. При вызове предиката надо 0 ставить
+% +CurrInd - индекс последнего найденного минимума. При вызове предиката
+% надо 0 ставить
+% ?Ind - индекс последнего минимума в списке (в задаче - при вызове это
+% должна быть переменная
+ind_last_min([], _, _, Ind, Ind):-!.
+ind_last_min([H|T],Min,I,CurrInd, Ind):- I1 is I+1,
+    (H=Min -> CurrInd1 = I; CurrInd1 = CurrInd),
+    ind_last_min(T,Min,I1,CurrInd1,Ind).
+
+% получает подсписок из списка - все эл-ты до эл-та с номером Num
+% +[H|T] - список, из которого вытаскиваем
+% +I - индекс текущего эл-та. При вызове предиката надо 0 ставить
+% +Num - индекс, до которого копируем список (не включая)
+% +CurrResult - текущий итоговый список (в него складываем головы)
+% ?Result - конечный итоговый список
+get_l_bef_num(_,Num,Num,Res,Res):-!.
+get_l_bef_num([H|T],I,Num,CurrResult,Result):-
+    append1(CurrResult,[H],NewRes), I1 is I+1,
+    get_l_bef_num(T,I1,Num,NewRes,Result).
+
+main_9:- read_9(N,List), min_list_up(List, Min),
+    ind_last_min(List,Min,0,0,LMInd), get_l_bef_num(List,0,LMInd,[],Result),
+    write_9(Result).
