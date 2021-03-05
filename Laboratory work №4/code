@@ -161,3 +161,41 @@ get_l_bef_num([H|T],I,Num,CurrResult,Result):-
 main_9:- read_9(N,List), min_list_up(List, Min),
     ind_last_min(List,Min,0,0,LMInd), get_l_bef_num(List,0,LMInd,[],Result),
     write_9(Result).
+
+
+% Задача 10 - Даны 2 массива. Найти кол-во повторяющихся по
+% значению элементов
+% [1,2,3,4,5,1]
+% [6,7,2,8,1,1]
+% 1,2 -> Count=2
+read_10(N,List1,M,List2):- write("Write N: "), read(N),
+    write("Input list1 elems: "), nl, read_list(N,List1),
+    write("Write M: "), read(M), write("Input list2 elems: "), nl,
+    read_list(M,List2).
+write_10(Count):- write("Count of repeating elems: "),nl, write(Count).
+
+% max из 2-х эл-тов из ЛР3. Вызов: max(+Х,+Y,?Z)
+max(X,Y,X):-X>Y,!.
+max(_,Y,Y).
+
+% ищет кол-во повторяющихся эл-тов 1 и 2 списков. выше показал как понял
+% +[H1|T1] - 1 список
+% +List2 - 2 список
+% +LReady - список уже обработанных из 1-го списка
+% +CurrCount - текущее кол-во накопленное
+% ?Count - итоговое кол-во
+count_rep_10([],_,_,Count,Count):-!.
+count_rep_10([H1|T1],List2,LReady,CurrCount,Count):-
+    ((in_list(LReady,H1),in_list(List2,H1)) ->
+    (NewCurC = CurrCount, append1(LReady,[],LReadyNew));
+    (in_list(List2,H1) ->
+    (NewCurC is CurrCount+1, append1(LReady,[H1],LReadyNew));
+    (NewCurC = CurrCount,append1(LReady,[],LReadyNew)))),
+    count_rep_10(T1,List2,LReadyNew,NewCurC,Count).
+
+% выбираем максимальный список и его ставим первым так как предикат
+% поиска построен на прохождении 1-го списка целиком
+main_10:- read_10(N,List1,M,List2), max(N,M,Max),
+    (N = Max -> count_rep_10(List1,List2,[],0,Count);
+    count_rep_10(List2,List1,[],0,Count)),
+    write_10(Count).
