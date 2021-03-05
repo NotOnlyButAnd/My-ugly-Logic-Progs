@@ -68,3 +68,7 @@ in_list([_|Tail],El):- in_list(Tail, El).
 append1([], List2, List2).
 append1([H|T1], List2, [H|T2]):- append1(T1, List2, T2).
 
+% task10 - переворачивает список
+mirror([H|[]], [H|[]]):-!.
+mirror([H|T], ListNew):- mirror(T, List), append1(List,[H], ListNew).
+
