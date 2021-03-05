@@ -89,3 +89,11 @@ del_by_num([H|T],Num,NewList, I, LastList):- I1 is I + 1,
     append1(NewList,[],NewList1)),
     del_by_num(T, Num, NewList1, I1, LastList).
 del_by_num(List,Num, Itog):-del_by_num(List, Num, [], 0, Itog).
+
+%task13 - удаляет все эл-ты заданные данному
+del_all_same([],_,NewList,NewList):-!.
+del_all_same([H|T],El,NewList, LastList):-
+    (El \= H -> append1(NewList, [H], NewList1);
+    append1(NewList,[],NewList1)),
+    del_all_same(T, El, NewList1, LastList).
+del_all_same(List,El, Itog):-del_all_same(List, El, [], Itog).
