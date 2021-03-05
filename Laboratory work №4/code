@@ -106,3 +106,13 @@ is_wout_repeat([H|T], ElemsList):-
     is_wout_repeat(T, NewElemsList).
 is_wout_repeat([]):-!.
 is_wout_repeat([H|T]):- is_wout_repeat(T,[H]).
+
+% task 15 - удалить все повторы
+% [1,1,2,3,3,3] -> [1,2,3]
+get_wout_rep([], Itog, Itog):-!.
+get_wout_rep([H|T], TempItog, Itog):-
+    (in_list(TempItog, H) -> append1(TempItog,[],NewItog);
+    append1(TempItog, [H], NewItog)),
+    get_wout_rep(T, NewItog, Itog).
+get_wout_rep([], []):-!.
+get_wout_rep([H|T], Itog):- get_wout_rep([H|T], [H], Itog).
