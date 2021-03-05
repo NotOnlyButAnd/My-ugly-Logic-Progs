@@ -116,3 +116,8 @@ get_wout_rep([H|T], TempItog, Itog):-
     get_wout_rep(T, NewItog, Itog).
 get_wout_rep([], []):-!.
 get_wout_rep([H|T], Itog):- get_wout_rep([H|T], [H], Itog).
+
+% task 16 - кол-во повторов El в списке
+count_rep([],_,0):-!.
+count_rep([H|T],El,Count):- count_rep(T,El,Count1),
+    (El = H -> Count is Count1 + 1; Count is Count1).
