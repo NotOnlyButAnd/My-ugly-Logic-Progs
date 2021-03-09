@@ -313,3 +313,31 @@ list_min_chet([_|T],CurMin,Min):-list_min_chet(T,CurMin,Min).
 main_40:-read_40(N,List),
     (list_min_chet(List,Min) -> write_40(Min);
     write("there is no one chetn elem!")).
+
+
+
+% задача 46 - вывести сперва все положит, затем все отриц эл-ты
+read_46(N,List):- write("Write N: "), read(N),
+    write("Input lists elems: "), nl, read_list(N,List).
+write_46(Poloz,Otriz):- write("Polozitelniye: "),nl, write_list(Poloz),
+    write("Otrizatelniye: "),nl, write_list(Otriz).
+
+% +[H|T] - список
+% +CurPoloz - текущие накопленные положительные эл-ты
+% ?Poloz - итоговый список положит
+% +CurOtriz - текущие накопленные отрицательные эл-ты
+% ?Otriz - итоговый список отрицат
+% При вызове предиката CurPoloz и CurOtriz надо ставить [] т.к. в пустой
+% список начинаем складывать элементы
+get_pol_otr([],Poloz,Poloz,Otriz,Otriz):-!.
+get_pol_otr([H|T],CurPoloz,Poloz,CurOtriz,Otriz):-
+    (H = 0 ->
+            get_pol_otr(T,CurPoloz,Poloz,CurOtriz,Otriz);
+            (H<0 ->
+            append1(CurOtriz,[H],CurOtrizNew), append1(CurPoloz,[],CurPolozNew);
+            append1(CurOtriz,[],CurOtrizNew), append1(CurPoloz,[H],CurPolozNew)),
+            get_pol_otr(T,CurPolozNew,Poloz,CurOtrizNew,Otriz)).
+
+
+main_46:-read_46(N,List),get_pol_otr(List,[],Poloz,[],Otriz),
+    write_46(Poloz,Otriz).
