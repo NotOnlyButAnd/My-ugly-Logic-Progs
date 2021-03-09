@@ -283,3 +283,33 @@ get_all_in_seg([H|T],A,B,CurRes,Result):-
 
 main_34:-read_34(N,List,A,B), get_all_in_seg(List,A,B,[],Result),
     write_34(Result).
+
+
+% задача 40 - найти мин чет эл-т
+read_40(N,List):- write("Write N: "), read(N),
+    write("Input lists elems: "), nl, read_list(N,List).
+write_40(Min):- write("Min chet elem: "),nl, write(Min).
+
+% +[H|T] - список
+% ?Min - куда будем складывать минимум
+% Чтобы найти минимум надо вызвать list_min_chet от 2-х аргументов:
+% списка, по которому идет поиск, и неинициализированной (или да)
+% переменной куда будем класть минимум
+% Сперва ищется четный элемент. Если его не находится, то fail
+
+%is_chet([],F,F):-!.
+%is_chet([H|T],CurF,F):- (0 is H mod 2 -> CurF1 is 1; CurF1 is CurF),
+%     is_chet(T,CurF1,F).
+
+list_min_chet([H|T],Min):- 0 is H mod 2,!,
+    list_min_chet(T,H,Min).
+list_min_chet([_|T],Min):- list_min_chet(T,Min).
+
+list_min_chet([],Min,Min):-!.
+list_min_chet([H|T],CurMin,Min):-
+    0 is H mod 2, H < CurMin, list_min_chet(T,H,Min),!.
+list_min_chet([_|T],CurMin,Min):-list_min_chet(T,CurMin,Min).
+
+main_40:-read_40(N,List),
+    (list_min_chet(List,Min) -> write_40(Min);
+    write("there is no one chetn elem!")).
