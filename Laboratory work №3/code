@@ -92,6 +92,16 @@ nod(_, _, 1, 1):-!.
 nod(N,M,CurDel,Nod):- CurDelNew is CurDel - 1, nod(N,M,CurDelNew, NodNew),
     ((0 is N mod CurDel, 0 is M mod CurDel) -> Nod is CurDel; Nod is NodNew).
 
+% алгоритм Евклида НОД (хотя бы 1 != 0)
+% если 1 из исходных = 0, то НОД = 2 числу
+nod_evcl(N,0,N):-!.
+nod_evcl(0,N,N):-!.
+nod_evcl(N,M,Nod):-
+    (N>M -> (Rfirst is N mod M,nod_evcl1(N,M,Rfirst,Nod));
+    (Rfirst is M mod N, nod_evcl1(M,N,Rfirst,Nod))).
+nod_evcl1(_,M,0,M):-!.
+nod_evcl1(_,M,R,Nod):- R1 is M mod R, nod_evcl1(M,R,R1,Nod).
+
 % task12.2 - Проверить число на простоту
 % НЕ ПРОВЕРЯТЬ ЕДИНИЦУ И НОЛЬ!!!
 is_easy_num(N):- Nnew is N div 2, is_easy_num(N,Nnew).
