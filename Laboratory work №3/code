@@ -103,8 +103,10 @@ nod_evcl1(_,M,0,M):-!.
 nod_evcl1(_,M,R,Nod):- R1 is M mod R, nod_evcl1(M,R,R1,Nod).
 
 % task12.2 - Проверить число на простоту
-% НЕ ПРОВЕРЯТЬ ЕДИНИЦУ И НОЛЬ!!!
-is_easy_num(N):- Nnew is N div 2, is_easy_num(N,Nnew).
+% Просто́е число́ — это натуральное число, которое имеет ровно два
+% РАЗЛИЧНЫХ натуральных делителя: единицу и самого себя. Поэтому 1 не
+% является простым.
+is_easy_num(N):- N = 1 -> fail;(Nnew is N div 2, is_easy_num(N,Nnew)).
 is_easy_num(_, 1):-!.
 is_easy_num(N, Del):- DelNew is Del - 1, is_easy_num(N, DelNew), T is N mod Del,
     0 \= T.
