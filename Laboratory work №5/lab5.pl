@@ -156,3 +156,23 @@ task_2:- Men = [[_,rizhy],[_,blondin],[_,brynet]],
     not(in_list(Men,[chernov,brynet])),
     write(Men).
 
+% ЗАДАНИЕ 3
+% [имя,цвет_платья,цвет_туфель]
+task_3:- Girls = [[anya,_,_],[natasha,_,_],[valya,_,_]],
+    in_list(Girls,[_,white,_]),
+    in_list(Girls,[_,green,_]),
+    in_list(Girls,[_,blue,_]),
+    in_list(Girls,[_,_,white]),
+    in_list(Girls,[_,_,green]),
+    in_list(Girls,[_,_,blue]),
+
+    in_list(Girls,[natasha,_,green]),   %Наташа была в зеленых туфлях
+
+    in_list(Girls,[anya,T1,T1]),          %Только у Ани
+    not(in_list(Girls,[natasha,T2,T2])),  %платье и туфли
+    not(in_list(Girls,[valya,T3,T3])),    %одинакового цвета
+
+    not(in_list(Girls,[valya,white,_])),   %Ни туфли ни платье
+    not(in_list(Girls,[valya,_,white])),   %Вали не белые
+
+    write(Girls).
