@@ -176,3 +176,23 @@ task_3:- Girls = [[anya,_,_],[natasha,_,_],[valya,_,_]],
     not(in_list(Girls,[valya,_,white])),   %Вали не белые
 
     write(Girls).
+
+
+% ЗАДАНИЕ 4
+% [профессия,фамилия,братья_сестры,возраст]
+% братья_сестры: 0 - нету, 1 - есть
+% возраст: 1 - самый старший, 2 - средний, 3 - самый младший
+task_4:- Guys = [[slesar,_,_,_],[tokar,_,_,_],[svarshik,_,_,_]],
+    in_list(Guys,[_,borisov,_,_]),
+    in_list(Guys,[_,semenov,_,_]),
+    in_list(Guys,[_,ivanov,_,_]),
+
+    in_list(Guys,[slesar,Slesar,0,3]), % у слесаря ни братьев ни сестер + младший
+    in_list(Guys,[_,borisov,1,_]),% ... женатый на сестре Борисова
+    in_list(Guys,[_,semenov,_,1]),% Семёнов ...
+    in_list(Guys,[tokar,Tokar,_,2]),  % ... старше токаря
+    in_list(Guys,[svarshik,Svarshik,_,_]), % находим фамилию сварщика
+
+    write('slesar - '), write(Slesar), nl,
+    write('tokar - '), write(Tokar), nl,
+    write('svarshik - '), write(Svarshik).
