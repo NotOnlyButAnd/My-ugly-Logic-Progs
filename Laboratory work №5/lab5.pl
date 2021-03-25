@@ -196,3 +196,43 @@ task_4:- Guys = [[slesar,_,_,_],[tokar,_,_,_],[svarshik,_,_,_]],
     write('slesar - '), write(Slesar), nl,
     write('tokar - '), write(Tokar), nl,
     write('svarshik - '), write(Svarshik).
+
+%ЗАДАНИЕ 5
+% [посуда,жидкость]
+
+% находится ли сосуд B между A и C в Dishes (причем подряд идут они)
+is_between_next(A,B,C,[D]):-fail.
+is_between_next(A,B,C,[A,B|[C|_]]).
+is_between_next(A,B,C,[_|List]):-is_between_next(A,B,C,List).
+
+is_between([],_):-!.
+is_between([H1|T1],[H|T]):- (H1 = H -> is_between(T1,T); is_between([H1|T1],T)).
+
+task_5_v1:- Dishes = [_,_,_,_],
+    % организуем перебор по всем возможным вариантам
+    in_list(Dishes,[bottle,_]),in_list(Dishes,[stakan,_]),
+    in_list(Dishes,[kuvshin,_]),in_list(Dishes,[banka,_]),
+    in_list(Dishes,[_,milk]),in_list(Dishes,[_,limonad]),
+    in_list(Dishes,[_,kvas]),in_list(Dishes,[_,water]),
+    ((in_list(Dishes,[bottle,limonad]),
+     in_list(Dishes,[stakan,water]),
+     in_list(Dishes,[kuvshin,milk]),
+     in_list(Dishes,[banka,kvas])) -> write(Dishes),nl),
+    % начинаем проверку по условиям
+    (is_between_next([banka,_],[stakan,_],[_,milk],Dishes);
+    is_between_next([_,milk],[stakan,_],[banka,_],Dishes)),
+    ((in_list(Dishes,[bottle,limonad]),
+     in_list(Dishes,[stakan,water]),
+     in_list(Dishes,[kuvshin,milk]),
+     in_list(Dishes,[banka,kvas])) -> write('stakan mezhdy bankoy i milk'),nl),
+    (is_between([[_,kvas],[_,limonad],[kuvshin,_]],Dishes);
+    is_between([[kuvshin,_],[_,limonad],[_,kvas]],Dishes)),
+    ((in_list(Dishes,[bottle,limonad]),
+     in_list(Dishes,[stakan,water]),
+     in_list(Dishes,[kuvshin,milk]),
+     in_list(Dishes,[banka,kvas])) -> write('limonad mezhdy kvas i kuvshin'),nl,nl),
+    not(in_list(Dishes,[bottle,water])),
+    not(in_list(Dishes,[bottle,milk])),
+    not(in_list(Dishes,[banka,limonad])),
+    not(in_list(Dishes,[banka,water])),
+    write(Dishes).
