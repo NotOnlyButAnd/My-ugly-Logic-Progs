@@ -142,3 +142,28 @@ write_by_num_mod3([H|T],I):-
 	(I1 is I+1)),
 	write_by_num_mod3(T,I1).
 task_6:- read_str([_|T],_,0), write_by_num_mod3(T,1).
+
+% task7 - посчитать ОБЩЕЕ кол-во + и - (т.е. одновременно в 1 строке),
+% и символов после которых идет ноль
+% код плюса - 43, код минуса - 45, код нуля - 48
+
+get_count_plus_minus([],Count,Count):-!.
+get_count_plus_minus([H|T],Count,CurrCount):-
+	((H = 43 ; H = 45) ->
+	(CurrCount1 is CurrCount + 1);
+	(CurrCount1 is CurrCount)),
+	get_count_plus_minus(T,Count,CurrCount1).
+
+task_7_1:- read_str(Str,_,0),get_count_plus_minus(Str,Count,0),
+	nl, write("Count of + and -: "), write(Count).
+
+get_count_zero([],Count,Count):-!.
+get_count_zero([H|T],Count,CurrCount):-
+	((H = 48) -> (CurrCount1 is CurrCount + 1); (CurrCount1 is CurrCount)),
+	get_count_zero(T,Count,CurrCount1).
+
+% чтобы найти кол-во симв, после которых идет ноль, надо просто
+% посчитать кол-во нулей без первого симв в строке
+task_7_2:-read_str([_|T],_,0), get_count_zero(T,Count,0),
+	nl, write("Count of symbols before zero: "), write(Count).
+
