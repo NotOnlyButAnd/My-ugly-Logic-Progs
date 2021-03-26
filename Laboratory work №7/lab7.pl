@@ -61,3 +61,18 @@ pr:-read_str(Str,N,0),nl,nl,write_str(Str),
 	write(", "),write_str(Str)
 	,write(", "),write_str(Str),
 	nl,write(N).
+
+% task2 - кол-во слов в строке
+words([],WordNumber,_,WordNumber):-!.
+words([H|T],WordNumber,Flag,CurWordNumber):-
+	((H\=32, Flag=0) ->   %встретили 1 символ после пробела(нашли +1 слово)
+            (CurWordNumber1 is CurWordNumber +1,
+	     Flag1 is 1, words(T,WordNumber,Flag1,CurWordNumber1));
+       ((H=32, Flag=0) ->     %встретили пробел когда идем по пробелам
+	    words(T,WordNumber,Flag,CurWordNumber);
+       ((H=32, Flag=1) ->     %нашли пробел когда идем по слову
+            (Flag1 is 0,
+	     words(T,WordNumber,Flag1,CurWordNumber));
+        words(T,WordNumber,Flag,CurWordNumber)))).
+
+task_2:-read_str(Str,_,0),words(Str,WordNumber,0,0), nl, write(WordNumber).
