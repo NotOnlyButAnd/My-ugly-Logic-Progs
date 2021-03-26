@@ -130,3 +130,15 @@ write_num_same_last([H|T],Last,I):-
 
 task_5:- read_str(Str,_,0),get_last_el_str(Str,Last),
 	write_num_same_last(Str,Last,0).
+
+
+% task 6 - показать 3,6,9,12,...
+% нумерация с нуля, но нулевой не выводим, только 3, 6, ...
+
+write_by_num_mod3([],_):-!.
+write_by_num_mod3([H|T],I):-
+	((0 is I mod 3) ->
+	(write_str([H]),nl,I1 is I+1);
+	(I1 is I+1)),
+	write_by_num_mod3(T,I1).
+task_6:- read_str([_|T],_,0), write_by_num_mod3(T,1).
