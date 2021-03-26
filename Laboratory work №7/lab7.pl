@@ -95,3 +95,25 @@ get_all_words([H|T],Words,CurWords,Flag,CurWord):-
 
 task_3:- read_str(Str,_,0),get_all_words(Str, Words,[],0,[]), nl, write(Str),
 	nl, write(Words).
+
+% task 4
+write_last_3([H1,H2,H3],3):-
+	write_str([H1]),nl,
+	write_str([H2]),nl,
+	write_str([H3]),nl,!.
+write_last_3([_|T],N):- N1 is N - 1, write_last_3(T,N1).
+
+write_first_last_3([H1,H2,H3|T],N):-
+	write_str([H1]),nl,
+	write_str([H2]),nl,
+	write_str([H3]),nl,
+	N1 is N - 3, write_last_3(T, N1).
+
+
+write_str_n(_,N,N):-!.
+write_str_n(Str, N, I):- write_str(Str),nl, I1 is I + 1, write_str_n(Str, N, I1).
+
+write_first_n([H|_],N):- write_str_n([H],N,0).
+
+task_4:- read_str(Str,N,0),
+	(N > 5 -> write_first_last_3(Str,N); write_first_n(Str,N)).
