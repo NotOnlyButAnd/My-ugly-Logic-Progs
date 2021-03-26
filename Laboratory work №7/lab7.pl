@@ -76,3 +76,22 @@ words([H|T],WordNumber,Flag,CurWordNumber):-
         words(T,WordNumber,Flag,CurWordNumber)))).
 
 task_2:-read_str(Str,_,0),words(Str,WordNumber,0,0), nl, write(WordNumber).
+
+% task 3 - определить самое частое слово
+% [слово,количество]
+%get_all_words([],Words,Words,_,[]):-!.
+get_all_words([],Words,Words,_,_):-!.
+get_all_words([H|T],Words,CurWords,Flag,CurWord):-
+	((H\=32, Flag=0) ->   %встретили 1 символ после пробела
+            (append([CurWord],[H],CurWord1),
+	     Flag1 is 1, get_all_words(T,Words,CurWords,Flag1,CurWord1));
+       ((H=32, Flag=0) ->     %встретили пробел когда идем по пробелам
+	    get_all_words(T,Words,CurWords,Flag,CurWord);
+       ((H=32, Flag=1) ->     %нашли пробел когда идем по слову
+            (Flag1 is 0, append([CurWords],[CurWord],CurWords1),
+	     get_all_words(T,Words,CurWords1,Flag1,[]));
+        (append([CurWord],[H],CurWord1),
+	 get_all_words(T,Words,CurWords,Flag,CurWord1))))).
+
+task_3:- read_str(Str,_,0),get_all_words(Str, Words,[],0,[]), nl, write(Str),
+	nl, write(Words).
