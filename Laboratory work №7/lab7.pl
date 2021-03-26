@@ -117,3 +117,16 @@ write_first_n([H|_],N):- write_str_n([H],N,0).
 
 task_4:- read_str(Str,N,0),
 	(N > 5 -> write_first_last_3(Str,N); write_first_n(Str,N)).
+
+
+% task5 - номера символов совпадающих с последним
+get_last_el_str([T],T):-!.
+get_last_el_str([_|T],El):- get_last_el_str(T,El1), El is El1.
+
+write_num_same_last([],_,_):-!.
+write_num_same_last([H|T],Last,I):-
+	(H = Last -> (write(I), nl, I1 is I + 1); (I1 is I + 1)),
+	write_num_same_last(T,Last,I1).
+
+task_5:- read_str(Str,_,0),get_last_el_str(Str,Last),
+	write_num_same_last(Str,Last,0).
