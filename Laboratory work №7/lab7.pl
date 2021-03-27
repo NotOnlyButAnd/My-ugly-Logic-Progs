@@ -187,3 +187,6 @@ task_8:- read_str(Str,_,0),
      (write("X"), write(" is earlier"))));
     write("There is no W or X")).
 
+task_9:- read_str(Str1,N1,0),read_str(Str2,N2,0),
+    ((N1 > N2) -> (N is N1 - N2, write_str_n(Str1,N,0));
+    (N is N2 - N1, write_str_n(Str2,N,0))).
