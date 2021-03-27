@@ -167,3 +167,23 @@ get_count_zero([H|T],Count,CurrCount):-
 task_7_2:-read_str([_|T],_,0), get_count_zero(T,Count,0),
 	nl, write("Count of symbols before zero: "), write(Count).
 
+% task8 - что раньше, w или x. если нет кого-то, то вывести сообщение
+% Коды: w - 119, x - 120
+list_el_numb(List, Elem, Number):-list_el_numb(List, Elem, 0, Number).
+list_el_numb([H|_], H, Number, Number):- !.
+list_el_numb([_|T], Elem, I, Number):- I1 is I + 1, list_el_numb(T, Elem, I1, Number).
+
+is_there_w_and_x(Str):- in_list(Str,119),!, in_list(Str,120),!.
+
+x_or_w_earlier(Str, Flag):-
+    list_el_numb(Str,119,0,NumW), list_el_numb(Str,120,0,NumX),
+    ((NumW < NumX) -> Flag is 1; Flag is 2).
+
+task_8:- read_str(Str,_,0),
+    (is_there_w_and_x(Str) ->
+    (x_or_w_earlier(Str,Flag),
+     (Flag = 1 ->
+     (write("W"), write(" is earlier"));
+     (write("X"), write(" is earlier"))));
+    write("There is no W or X")).
+
