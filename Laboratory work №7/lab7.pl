@@ -198,3 +198,17 @@ task_10:- read_str([H1,H2,H3|T],_,0),
     (Hn1 is 119, Hn2 is 119, Hn3 is 119, write_str([Hn1,Hn2,Hn3|T]));
     (append([H1,H2,H3|T],[122,122,122],S), write_str(S))).
 % можно было конечно и нормально сделать, так чтобы был отдельный предикат проверки аbc (т.к. так он обязательно считает 3 символа), но.... и так сойдет
+
+% task11
+% o - 111
+write_str_n_sym(_,N,N):-!.
+write_str_n_sym([H|Tail],I,N):-put(H),I1 is I + 1,write_str_n_sym(Tail,I1,N).
+
+add_o_to_12(Itog,12,Itog):-!.
+add_o_to_12(Str,I,Itog):-
+	append(Str,[111],StrN),I1 is I + 1,
+	add_o_to_12(StrN,I1,Itog).
+
+task_11:- read_str(Str,N,0),
+	((N > 10) -> (write_str_n_sym(Str,0,6));
+	(add_o_to_12(Str,N,StrN),write_str(StrN))).
