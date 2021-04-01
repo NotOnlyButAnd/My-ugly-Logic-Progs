@@ -190,3 +190,11 @@ task_8:- read_str(Str,_,0),
 task_9:- read_str(Str1,N1,0),read_str(Str2,N2,0),
     ((N1 > N2) -> (N is N1 - N2, write_str_n(Str1,N,0));
     (N is N2 - N1, write_str_n(Str2,N,0))).
+
+% task10 - начало abc? заменить на www ; добавить в конце zzz
+% w - 119, z - 122
+task_10:- read_str([H1,H2,H3|T],_,0),
+    ((H1 = 97, H2 = 98, H3 = 99) ->
+    (Hn1 is 119, Hn2 is 119, Hn3 is 119, write_str([Hn1,Hn2,Hn3|T]));
+    (append([H1,H2,H3|T],[122,122,122],S), write_str(S))).
+% можно было конечно и нормально сделать, так чтобы был отдельный предикат проверки аbc (т.к. так он обязательно считает 3 символа), но.... и так сойдет
