@@ -54,3 +54,35 @@ task1_2:-
     count_str_with_spaces(File,Count),
     write(Count).
 
+% A - 65
+count_A_by_str([],CountA,CountA):-!.
+count_A_by_str([H|T],CountA,CurCountA):-
+	((H = 65) -> (CurCountA1 is CurCountA + 1); (CurCountA1 is CurCountA)),
+	count_A_by_str(T,CountA,CurCountA1).
+
+count_A_in_file([],CountA,CountA):-!.
+count_A_in_file([HF|TF],CountA,CurCountA):-
+	count_A_by_str(HF,CountAStr,0), CurCountA1 is CurCountA + CountAStr,
+	count_A_in_file(TF,CountA,CurCountA1).
+
+write_some_str_by_A([]):-!.
+write_some_str_by_A([H|T],SrAByStr):-
+	count_A_by_str(H,CountA,0),
+	((CountA > SrAByStr) -> (write_str(H),nl); true),
+	write_some_str_by_A(T,SrAByStr).
+
+% aAbAbcda    (+)
+% bsdfbsbdsd  (-)
+% ababqwAofop (-)
+% bAdfsAa     (+)
+%
+% A in file - 5
+% Sr A by Str = 5 / 4 = 1.25
+task1_3:-
+    see('F:/task1_2.txt'),
+    read_list_str(File), seen,
+    count_A_in_file(File,CountAF,0),
+    length_str(File,N),
+    SrAByStr is CountAF / N,
+    write(SrAByStr),nl,nl,
+    write_some_str_by_A(File,SrAByStr).
