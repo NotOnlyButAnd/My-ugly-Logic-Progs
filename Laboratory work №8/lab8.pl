@@ -88,6 +88,32 @@ task1_3:-
     write_some_str_by_A(File,SrAByStr).
 
 
+% ЗАДАНИЕ 1.4
+task1_4:-
+	see('F:/task1_4.txt'),
+	read_str(A,_,1),seen,
+	append([32],A,A1),reverse(A1,AR),
+	list_words(AR,[],LW,[]),
+	often_word_in_list(LW,_,Word,0,_),write_str(Word).
+
+list_words:-
+	read_str(A,_,_),append([32],A,A1),reverse(A1,AR),list_words(AR,[],_,[]).
+list_words([],LW,LW,_):-!.
+list_words([H|T],LW,LWN,W):-
+	(H=32 -> append([W],LW,LW1),list_words(T,LW1,LWN,[]);
+	append([H],W,W1),list_words(T,LW,LWN,W1)).
+
+kol_repeat_in_list([H|T],X,K):-kol_repeat_in_list([H|T],X,0,K).
+kol_repeat_in_list([],_,Kol,Kol):-write(Kol),nl, !.
+kol_repeat_in_list([H|T],X,K,Kol):-
+	(H=X -> K1 is K+1,kol_repeat_in_list(T,X,K1,Kol);
+	kol_repeat_in_list(T,X,K,Kol)).
+
+often_word_in_list([],Word,Word,Kol,Kol):-!.
+often_word_in_list([H|T],W,Word,K,Kol):-kol_repeat_in_list([H|T],H,K1),
+	(K1>K -> Kol1 = K1,W1=H,often_word_in_list(T,W1,Word,K1,Kol1);
+	often_word_in_list(T,W,Word,K,Kol)).
+
 % ЗАДАНИЕ 2.1 (4)
 % ПАЛИНДРОМЫ (перевертыши) - слова, читающиеся одинаково в обоих направлениях.
 %
