@@ -235,3 +235,34 @@ task_5_v2:- Dishes = [_,_,_,_],
 % правильный ответ:
 % [[banka,milk],[stakan,kvas],[bottle,limonad],[kuvshin,water]]
 % но их по факту 2 и они оба верные, проверено)))
+
+
+% ЗАДАНИЕ 6
+% [фамилия, занятие]
+task_6:-People=[_,_,_,_],
+    in_list(People,[_,dancer]),
+    in_list(People,[_,artist]),
+    in_list(People,[_,singer]),
+    in_list(People,[_,writer]),
+
+    in_list(People,[voronov,_]),
+    in_list(People,[pavlov,_]),
+    in_list(People,[levickiy,_]),
+    in_list(People,[sakharov,_]),
+
+    not(in_list(People,[voronov,singer])),
+    not(in_list(People,[levickiy,singer])),
+
+    not(in_list(People,[pavlov,artist])),
+    not(in_list(People,[pavlov,writer])),
+
+    not(in_list(People,[sakharov,writer])),
+    not(in_list(People,[voronov,writer])),
+   % точно определено что трое человек - сахаров воронов и павлов - не писатели =>
+   % левицкий - писатель. А так как он позировал художнику, то воронов точно не художник
+   % (раз он его не знает)
+   not(in_list(People,[voronov,artist])),
+
+   % отключаем перебор так как выводит просто варианты одних и тех же занятий,
+   % только в разном порядке а нам ита ни нада
+    write(People), !.
