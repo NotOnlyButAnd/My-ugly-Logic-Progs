@@ -191,3 +191,45 @@ task2_3_15:-
 
 in_list1([El|_],El).
 in_list1([_|Tail],El):- in_list(Tail, El).
+
+% ЗАДАНИЕ 3
+% 31 февраля 2021
+task_3:-
+	see('F:/task_3.txt'),
+	read_str(List,_,1),seen,
+	append(List,[32],List1),
+	write_str(List1),
+	date_time(List1).
+
+date_time([]):-!.
+date_time([32|Tail]):-date_time(Tail),!.
+date_time([Head|Tail]):-
+	(day([Head|Tail],[],Day,After_Day)->
+	(month(After_Day,[],Month,After_Month)->
+	(year(After_Month,[],Year,After_Year)->
+	write_str(Day),write(" "),write_str(Month),write(" "),write_str(Year),nl,
+	date_time(After_Year);
+	date_time(After_Month));
+	date_time(After_Day));
+	date_time(Tail)).
+
+day([32|Tail],Day,Day,Tail):-!.
+day([Head|Tail],I,Day,After_Day):-
+	Head >=48,Head =<57,
+	append(I,[Head],I1),
+	day(Tail,I1,Day,After_Day),!.
+day([_|_],_,_,_):-!,false.
+
+month([32|Tail],Month,Month,Tail):-!.
+month([Head|Tail],I,Month,After_Month):-
+	Head >=97,Head =<122,
+	append(I,[Head],I1),
+	month(Tail,I1,Month,After_Month),!.
+month([_|_],_,_,_):-!,false.
+
+year([32|Tail],Year,Year,Tail):-!.
+year([Head|Tail],I,Year,After_Year):-
+	Head >=48,Head =<57,
+	append(I,[Head],I1),
+	year(Tail,I1,Year,After_Year),!.
+year([_|_],_,_,_):-!,false.
