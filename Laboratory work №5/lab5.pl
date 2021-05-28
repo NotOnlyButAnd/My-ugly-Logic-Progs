@@ -266,3 +266,37 @@ task_6:-People=[_,_,_,_],
    % отключаем перебор так как выводит просто варианты одних и тех же занятий,
    % только в разном порядке а нам ита ни нада
     write(People), !.
+
+
+% ЗАДАНИЕ 7
+task_7:-Sport=[_,_,_],
+
+    Sport=[_,_,_],
+    in_list(Sport,[maikl,_,basketball,_]),
+    in_list(Sport,[saimon,izrail,_,_]),
+    in_list(Sport,[richard,_,_,_]),
+    in_list(Sport,[_,australia,_,_]),
+    in_list(Sport,[_,_,criket,1]),
+
+    % делаем оставшийся перебор
+    in_list(Sport,[_,america,_,_]),
+    in_list(Sport,[_,_,tennis,_]),
+    in_list(Sport,[_,_,_,2]),
+    in_list(Sport,[_,_,_,3]),
+
+    % распределяем кто лучше кого играет
+    in_list(Sport,[maikl,_,_,N1]),
+    in_list(Sport,[_,america,_,N2]),N1<N2,
+    in_list(Sport,[saimon,_,_,N3]),
+    in_list(Sport,[_,_,tennis,N4]),N3<N4,
+
+    not(in_list(Sport,[saimon,_,tennis,_])),
+    not(in_list(Sport,[maikl,america,_,_])),
+
+    in_list(Sport,[Australian,australia,_,_]),
+    write("Australian - "), write(Australian),nl,
+
+    in_list(Sport,[richard,_,RichardP,_]),
+    write("Richard plays "), write(RichardP),nl,
+    % опять обрубаем перебор так как порядок нас не интересует
+    write(Sport),!.
