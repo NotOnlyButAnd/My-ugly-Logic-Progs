@@ -271,7 +271,6 @@ task_6:-People=[_,_,_,_],
 % ЗАДАНИЕ 7
 task_7:-Sport=[_,_,_],
 
-    Sport=[_,_,_],
     in_list(Sport,[maikl,_,basketball,_]),
     in_list(Sport,[saimon,izrail,_,_]),
     in_list(Sport,[richard,_,_,_]),
