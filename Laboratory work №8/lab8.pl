@@ -151,3 +151,18 @@ task2_1_4:-
     %write_str(StrWOutSpaces), nl,
     %write_str(Itog), nl,
     (StrWOutSpaces = Itog -> write("Палиндром)))"); write("НЕ палиндром(((")).
+
+
+% В ФАЙЛЕ ТОЛЬКО 1 СТРОКА
+% ЗАДАНИЕ 2.2.11
+count_spaces_str([],Count,Count):-!.
+count_spaces_str([H|T],CurCount,Count):-
+	(H = 32 -> CurCount1 is CurCount + 1; CurCount1 is CurCount),
+	count_spaces_str(T,CurCount1, Count).
+
+task2_2_11:-
+    see('F:/task2_1_4.txt'),
+    read_list_str([H|_]), seen,
+    count_spaces_str(H,0,Count),
+    write("Words: "), write(Count),nl.
+
