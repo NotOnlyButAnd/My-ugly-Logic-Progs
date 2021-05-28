@@ -86,3 +86,42 @@ task1_3:-
     SrAByStr is CountAF / N,
     write(SrAByStr),nl,nl,
     write_some_str_by_A(File,SrAByStr).
+
+
+% ЗАДАНИЕ 2.1 (4)
+% ПАЛИНДРОМЫ (перевертыши) - слова, читающиеся одинаково в обоих направлениях.
+%
+% вызов : mirror([97,98,99],Itog,[_|[]]).
+% т.к. голову кладем как бы в конец, т.е. должен быть пустой список в
+% конце (по определению списков черча
+%
+% Палиндромы-строки:
+% аргентина манит негра
+% рвал дед лавр
+% коту тащат уток
+% Т.Е. надо еще удалить пробелы перед проверкой строк на палиндромность
+%
+% небольшой костыль, в конце после добавления послденего символа
+% добавляется неинициализированная переменная. поэтому в конце ее
+% отрубаем и только потом кладём в итог
+mirror([],T,[_|T]):-!.
+mirror([H|T],Itog,[H1|T1]):-H1 is H, mirror(T,Itog,[_|[H1|T1]]).
+
+% CurItog инициализируй []
+del_all_spaces_str([],Itog, Itog):-!.
+del_all_spaces_str([H|T], CurItog, Itog):-
+	(H \= 32 -> append(CurItog,[H], CurItog1) ;
+	append(CurItog, [], CurItog1)),
+	del_all_spaces_str(T,CurItog1,Itog).
+
+% В ФАЙЛ ПИСАТЬ ТОЛЬКО 1 СТРОКУ
+task2_1_4:-
+    see('F:/task2_1_4.txt'),
+    read_list_str([H|_]), seen,
+    write_str(H), nl,
+    del_all_spaces_str(H,[],StrWOutSpaces),
+    mirror(StrWOutSpaces, Itog,[_|[]]),
+    %Вывод строчек чтобы посмотреть как он их преобразовал
+    %write_str(StrWOutSpaces), nl,
+    %write_str(Itog), nl,
+    (StrWOutSpaces = Itog -> write("Палиндром)))"); write("НЕ палиндром(((")).
