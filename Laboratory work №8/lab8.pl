@@ -166,3 +166,28 @@ task2_2_11:-
     count_spaces_str(H,0,Count),
     write("Words: "), write(Count),nl.
 
+
+% В ФАЙЛЕ ТОЛЬКО 1 СТРОКА
+% В СТРОКЕ ТОЛЬКО ЦИФРЫ И НИЧЕГО БОЛЬШЕ (это же натур число)
+% Дано натуральное число. Необходимо найти количество различных
+% цифр в его десятичной записи.
+% ЗАДАНИЕ 2.3.15
+count_dif_digits_str([],Count,Count,_):-!.
+count_dif_digits_str([H|T],CurCount,Count,CurDigits):-
+	(not(in_list(CurDigits, H)) ->
+	(append([H],CurDigits,CurDigits1),
+	 CurCount1 is CurCount + 1,
+	 count_dif_digits_str(T, CurCount1,Count,CurDigits1));
+	(CurCount1 is CurCount,
+	 count_dif_digits_str(T, CurCount1,Count,CurDigits))).
+count_dif_digits_str(Str,Count):-
+	count_dif_digits_str(Str, 0, Count, []).
+
+task2_3_15:-
+    see('F:/task2_3_15.txt'),
+    read_list_str([H|_]), seen,
+    count_dif_digits_str(H,Count),
+    write("Diff digits: "), write(Count),nl.
+
+in_list1([El|_],El).
+in_list1([_|Tail],El):- in_list(Tail, El).
