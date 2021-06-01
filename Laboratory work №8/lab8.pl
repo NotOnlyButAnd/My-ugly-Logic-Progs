@@ -331,3 +331,18 @@ list_wordskol(A,LW,_,K):-append([32],A,A1),reverse(A1,AR),list_wordskol(AR,[],LW
 list_wordskol([],LW,LW,_,K,K):-!.
 list_wordskol([H|T],LW,LWN,W,Kolvo,K):-((H=32; H=10) -> append([W],LW,LW1), K1 is K+1,list_wordskol(T,LW1,LWN,[],Kolvo, K1);
 append([H],W,W1),list_wordskol(T,LW,LWN,W1,Kolvo,K)).
+
+
+% ЗАДАНИЕ 7
+task7:-see('F:/task7.txt'),read_list_str(List,_),seen,del_chisla(List, List1),kol_slov_str(List1, L),sort1(List1, L,[]).
+
+del_chisla([],A,A):-!.
+del_chisla(A,B):-del_chisla(A,B,[]).
+del_chisla([H|T],L,A):-del_(H,List),append(A,[List],B),del_chisla(T, L,B),!.
+
+del_([H|T],List):-del_([H|T],[],List, 1),!.
+del_([],List,List,0):-!.
+del_([H|T], Temp, List,1):-(H>47, H<58-> del_(T, Temp,List,0)),!.
+del_([H|T], Temp, List,0):-(H>47, H<58-> del_(T, Temp,List,0)),!.
+del_([H|T], Temp, List,0):-append(Temp,[H], Temp1), del_(T, Temp1, List,0),!.
+del_([H|T], Temp, List,1):-del_(T, Temp, List,1),!.
