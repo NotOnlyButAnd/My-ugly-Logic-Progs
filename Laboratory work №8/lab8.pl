@@ -240,7 +240,7 @@ year([_|_],_,_,_):-!,false.
 count_less_5([],Count,Count):-!.
 count_less_5([H|T],CurCount,Count):-
 	((H < 53, H >= 48) -> CurCount1 is CurCount + 1; CurCount1 is CurCount),
-	count_spaces_str(T,CurCount1, Count).
+	count_less_5(T,CurCount1, Count).
 
 task4_1_4:-
     see('F:/task4_1_4.txt'),
