@@ -233,3 +233,17 @@ year([Head|Tail],I,Year,After_Year):-
 	append(I,[Head],I1),
 	year(Tail,I1,Year,After_Year),!.
 year([_|_],_,_,_):-!,false.
+
+
+% В ФАЙЛЕ ТОЛЬКО 1 СТРОКА
+% ЗАДАНИЕ 4.1.4
+count_less_5([],Count,Count):-!.
+count_less_5([H|T],CurCount,Count):-
+	((H < 53, H >= 48) -> CurCount1 is CurCount + 1; CurCount1 is CurCount),
+	count_spaces_str(T,CurCount1, Count).
+
+task4_1_4:-
+    see('F:/task4_1_4.txt'),
+    read_list_str([H|_]), seen,
+    count_less_5(H,0,Count),
+    write("Count digits less 5: "), write(Count),nl.
