@@ -297,3 +297,24 @@ task4_3_15:-
     write_str(H),
     count_more_5(H,0,Count),
     write("Count digits more 5: "), write(Count),nl.
+
+% ЗАДАНИЕ 5
+read_list_str(List, LengthList):-read_str(A,N,Flag),read_list_str([A],List,[N],LengthList,Flag).
+read_list_str(List,List,LengthList, LengthList,1):-!.
+read_list_str(Cur_list,List,CurLengthList,LengthList,0):-
+read_str(A,N,Flag),append(Cur_list,[A],C_l),
+append(CurLengthList, [N], NewLengthList),read_list_str(C_l,List,NewLengthList,LengthList,Flag).
+
+task5:-see('F:/task5.txt'),read_list_str(List,N),seen,sort1(List, N,[]).
+sort1([],[],A):-write_list_str(A),!.
+
+sort1([H|T],[HL|TL],A):-Max =HL, Max_str=H, sort_([H|T],[HL|TL], Max, Max_str, Stroka, Nom),append(A,[Stroka],B),remove_str([H|T], Stroka, List),remove_str([HL|TL], Nom, ListL), sort1(List, ListL,B),!.
+
+sort_([],[], Max, Max_str,Max_str, Max):-!.
+sort_([H|T], [HL|TL], Max, Max_str, St,Nm):- (HL>Max-> Max1 = HL, Max_str1 = H,sort_(T, TL, Max1, Max_str1, St,Nm); sort_(T, TL, Max, Max_str,St,Nm)).
+
+remove_str([H|T], X, List):-remove_str([H|T],[],List,X, 1).
+remove_str([],List,List,_,_):-!.
+remove_str([H|T], Temp, List, X, 1):-(H=X-> remove_str(T, Temp,List,X, 0)),!.
+remove_str([H|T], Temp, List, X, 1):-append(Temp,[H], Temp1), remove_str(T, Temp1, List, X,1).
+remove_str([H|T], Temp, List, X, 0):-append(Temp,[H], Temp1), remove_str(T, Temp1, List, X,1).
