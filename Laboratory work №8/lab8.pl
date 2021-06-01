@@ -247,3 +247,38 @@ task4_1_4:-
     read_list_str([H|_]), seen,
     count_less_5(H,0,Count),
     write("Count digits less 5: "), write(Count),nl.
+
+
+% 97 - small a; 122 - small z
+% 65 - big A; 90 - big Z
+% В ФАЙЛЕ ТОЛЬКО 1 СТРОКА
+% ЗАДАНИЕ 4.2.11
+get_used_english([],Used,Used):-!.
+get_used_english([H|T],CurUsed,Used):-
+	(((H =< 90, H >= 65); (H =< 122, H >= 97)), not(in_list1(CurUsed,H)) ->
+	append(CurUsed,[H],CurUsed1); append(CurUsed,[],CurUsed1)),
+	get_used_english(T,CurUsed1, Used).
+
+
+get_non_used_big_eng(_,91, NonUsedBig, NonUsedBig):-!.
+get_non_used_big_eng(Used,CurLetter, CurNonUsed, NonUsedBig):-
+	(in_list1(Used,CurLetter) ->
+	append(CurNonUsed,[],CurNonUsed1); append(CurNonUsed,[CurLetter],CurNonUsed1)),
+	CurLetter1 is CurLetter + 1,
+	get_non_used_big_eng(Used,CurLetter1,CurNonUsed1, NonUsedBig).
+
+
+get_non_used_small_eng(_,123, NonUsedSmall, NonUsedSmall):-!.
+get_non_used_small_eng(Used,CurLetter, CurNonUsed, NonUsedSmall):-
+	(in_list1(Used,CurLetter) ->
+	append(CurNonUsed,[],CurNonUsed1); append(CurNonUsed,[CurLetter],CurNonUsed1)),
+	CurLetter1 is CurLetter + 1,
+	get_non_used_small_eng(Used,CurLetter1,CurNonUsed1, NonUsedSmall).
+
+task4_2_11:-
+    see('F:/task4_2_11.txt'),
+    read_list_str([H|_]), seen,
+    get_used_english(H,[],Used),
+    get_non_used_big_eng(Used,65,[],NonUsedBig),
+    get_non_used_small_eng(Used,97,[],NonUsedSmall),
+    write("NonUsed eng: "), nl, write_str(NonUsedBig),nl, write_str(NonUsedSmall),nl.
