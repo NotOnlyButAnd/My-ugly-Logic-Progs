@@ -282,3 +282,18 @@ task4_2_11:-
     get_non_used_big_eng(Used,65,[],NonUsedBig),
     get_non_used_small_eng(Used,97,[],NonUsedSmall),
     write("NonUsed eng: "), nl, write_str(NonUsedBig),nl, write_str(NonUsedSmall),nl.
+
+
+% В ФАЙЛЕ ТОЛЬКО 1 СТРОКА
+% ЗАДАНИЕ 4.3.15
+count_more_5([],Count,Count):-!.
+count_more_5([H|T],CurCount,Count):-
+	((H > 53, H =< 57) -> CurCount1 is CurCount + 1; CurCount1 is CurCount),
+	count_more_5(T,CurCount1, Count).
+
+task4_3_15:-
+    see('F:/task4_3_15.txt'),
+    read_list_str([H|_]), seen,
+    write_str(H),
+    count_more_5(H,0,Count),
+    write("Count digits more 5: "), write(Count),nl.
