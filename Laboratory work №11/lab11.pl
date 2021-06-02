@@ -1,4 +1,7 @@
 % запишем пару предикатов для работы с файлами
+read_str(A):- get0(X), r_str(X,A,[]).
+r_str(10,A,A):-!.
+r_str(X,A,B):- append(B,[X],B1), get0(X1), r_str(X1,A,B1).
 
 read_str(A,N):-get0(X),r_str(X,A,[],N,0).
 r_str(10,A,A,N,N):-!.
@@ -624,23 +627,43 @@ quest(10,X):-	nl, write("Does this actor played in your movie?"),nl,
                                 write("0. None of them"),nl,
 				read(X).
 
-select_quest([Hero1,Hero2],Quest,Next_quest):-quest(Quest,Hero1,Answer1),quest(Quest,Hero2,Answer2),(Answer1=\=Answer2 -> Next_quest is Quest,!;
-                                              Quest1 is Quest+1, select_quest([Hero1,Hero2],Quest1,Next_quest)).
+p1:- (exists_file('F:/Films.txt') -> consult_file(L); true),
+	quest(1,X1),quest(2,X2),quest(3,X3),quest(4,X4),quest(5,X5),
+	quest(6,X6),quest(7,X7),quest(8,X8),quest(9,X9),quest(10,X10),
+	(quest(1,X,X1),quest(2,X,X2),quest(3,X,X3),quest(4,X,X4),
+	quest(5,X,X5),quest(6,X,X6),quest(7,X,X7),quest(8,X,X8),quest(9,X,X9), quest(10,X,X10) ->
+	write(X);
+
+	write("This film/serial isn't in the database."), nl,
+	write("Do you want to add it?"), nl, write("1. Yes"), nl, write("2. No"), nl,
+	read(M),
+	(M = 1 -> write("Enter the film/serial name: "), read(Name),
+	 asserta(quest(10,Name,X10)),
+	asserta(quest(9,Name,X9)), asserta(quest(8,Name,X8)),
+	asserta(quest(7,Name,X7)), asserta(quest(6,Name,X6)),
+	asserta(quest(5,Name,X5)), asserta(quest(4,Name,X4)),
+	asserta(quest(3,Name,X3)), asserta(quest(2,Name,X2)),
+	asserta(quest(1,Name,X1)), write("The character was added."),
+	retractall(quest(_,Name,_)),
+	tell('F:/Films.txt'),
+	nl, write("1."), nl, write(Name), nl, write(X1), write("."),
+	nl, write("2."), nl, write(Name), nl, write(X2), write("."),
+	nl, write("3."), nl, write(Name), nl, write(X3), write("."),
+	nl, write("4."), nl, write(Name), nl, write(X4), write("."),
+	nl, write("5."), nl, write(Name), nl, write(X5), write("."),
+	nl, write("6."), nl, write(Name), nl, write(X6), write("."),
+	nl, write("7."), nl, write(Name), nl, write(X7), write("."),
+	nl, write("8."), nl, write(Name), nl, write(X8), write("."),
+	nl, write("9."), nl, write(Name), nl, write(X9), write("."),
+	nl, write("10."), nl, write(Name), nl, write(X10), write("."),
+	(nonvar(L) -> write_list_str(L); true),
+	told;
+	true)).
 
 
-%Главный предикат акинатора (точка входа)
-%В списке перечисляем все функторы которые у нас есть в базе
-pr:-pr(1,[interstellar,rick_and_morty,the_green_mile,green_book,gravity_falls,
-         winx_club,chappie,i_robot,harry_potter,lord_of_rings,
-         simpsons,south_park,big_bang_theory,riverdale,teen_wolf,
-         fiksiki,brilliant_hand,three_bogatyrs,chernobyl,fathers_daughters,
-         ivan_and_wolf,policeman_from_rublevka,kadetstvo,elki,smeshariki,
-         barboskiny,brat,shawshank_redemption,inception,departed]).
+consult_file(L):- see('F:/Films.txt'), get0(Sym),
+	read_quest(Sym,L), seen.
 
-pr(N,Films):-quest(N,X),check(N,X,Films,[],Films_other),
-    (alone(Films_other)->write([Films_other]),!;N1 is N+1,pr(N1,Films_other)).
-
-check(_,_,[],Other,Other):-!.
-check(N,X,[Film|Tail],Other,Films_other):-
-    (quest(N,Film,X)->check(N,X,Tail,[Film|Other],Films_other);
-    check(N,X,Tail,Other,Films_other)).
+read_quest(-1,[]):-!.
+read_quest(_,[[NumQ,X,Y]|T]):- read(NumQ), get0(_), read_str(Name), name(X,Name), read(Y),
+	asserta(quest(NumQ,X,Y)), get0(Sym), read_quest(Sym,T).
